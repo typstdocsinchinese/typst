@@ -84,6 +84,7 @@ water).
 ```
 
 <div class="info-box">
+
 想从更技术的角度来了解这里发生了什么吗？
 
 Set rules 可以解释为如下概念：为将来的所有对该函数的调用设置部分参数的默认值。
@@ -119,7 +120,7 @@ what they do.
 
 ![Autocomplete panel](2-formatting-autocomplete.png)
 
-## Set up the page { #page-setup }
+## 配置页面
 
 回到 set rules 上面：在编写一个规则的时候，你会按照你想要定义样式的元素类型来选择函数。下面列出了一些在 set rules 中常用的函数。
 
