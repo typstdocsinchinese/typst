@@ -29,3 +29,7 @@ package-lock.json
 
 # Docs built files
 data.json
+
+# Local files
+*local.sh
+assets
