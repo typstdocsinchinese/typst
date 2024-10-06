@@ -7,7 +7,7 @@ description: Typst's tutorial.
 
 让我们开始吧！
 
-假设你的大学布置你编写一篇技术报告，这里面会包含文段、数学公式、大小标题以及各种图形。开始时，你在 Typst app 里创建了一个新的项目。接下来页面跳转到编辑器里。编辑器有两栏：一个是用来编写你的文档的源代码栏（source panel），另一个是用来查看渲染后文档的预览栏（preview panel）。
+假设你的大学布置你编写一篇技术报告，这里面会包含文段、数学公式、大小标题以及各种图形。开始时，你在 Typst app 里创建了一个新的项目，接下来页面跳转到编辑器里，在这里你可以看到两个栏目：一个是用来编写你的文档的源代码栏（source panel），另一个是用来查看渲染后文档的预览栏（preview panel）。
 
 <original>
 Let's get started! Suppose you got assigned to write a technical report for
