@@ -205,7 +205,7 @@ behaviour of these natural structures.
 
 有几件事需要注意。
 
-第一个，是 [`page`] 这个 set rule。它接受两个参数：页面大小和边距。页面的大小事一个字符串，Typst 接受许多[标准的页面大小]($page.paper)，不过你也可以自定义。边距以[字典]($dictionary)的形式指定。字典是一组键值对（key-value pairs）。例子中的键是 `x` 和 `y`，值分别是水平和垂直的边距。我们也可以通过在字典中带上 `{left}`、`{right}`、`{top}` 和 `{bottom}` 来指定每个方向的边距。
+第一个，是 [`page`] 这个 set rule。它接受两个参数：页面大小和边距。页面的大小是一个字符串，Typst 接受许多[标准的页面大小]($page.paper)，不过你也可以自定义。边距以[字典]($dictionary)的形式指定。字典是一组键值对（key-value pairs）。例子中的键是 `x` 和 `y`，值分别是水平和垂直的边距。我们也可以通过在字典中带上 `{left}`、`{right}`、`{top}` 和 `{bottom}` 来指定每个方向的边距。
 
 <original>
 There are a few things of note here.
