@@ -55,10 +55,10 @@ This tutorial has four chapters. Each chapter builds on the previous one. Here
 is what you will learn in each of them:
 </original>
 
-1. [使用 Typst 编写文档：]($tutorial/writing-in-typst) 了解如何编写文本，如何插入图片、公式和其它元素。
-2. [格式：]($tutorial/formatting) 了解如何修改文档中的各种格式，包括字体大小、标题样式等。 
-3. [高级样式：]($tutorial/advanced-styling)  了解如何为科学论文创建复杂的页面布局，包括一些字体特点（typographic features）上的自定义，例如作者列表、行内标题（run-in headings）等。
-4. [创建模板：]($tutorial/making-a-template) 了解如何基于第三章中的论文布局创建可复用的模板。
+1. [使用 Typst 编写文档]($tutorial/writing-in-typst)：了解如何编写文本，如何插入图片、公式和其它元素。
+2. [格式化]($tutorial/formatting)：了解如何修改文档中的各种格式，包括字体大小、标题样式等。 
+3. [高级样式]($tutorial/advanced-styling)：了解如何为科学论文创建复杂的页面布局，包括一些字体特点（typographic features）上的自定义，例如作者列表、行内标题（run-in headings）等。
+4. [创建模板]($tutorial/making-a-template)：了解如何基于第三章中的论文布局创建可复用的模板。
 
 <original>
 1. [Writing in Typst:]($tutorial/writing-in-typst) Learn how to write text and
