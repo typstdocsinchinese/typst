@@ -26,3 +26,6 @@ package-lock.json
 # Nix
 /result
 .direnv/
+
+# Docs built files
+data.json
