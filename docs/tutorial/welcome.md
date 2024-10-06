@@ -25,7 +25,7 @@ editor with the [open-source CLI](https://github.com/typst/typst).
 
 在开始之前，我们先看看 Typst 是什么，以及在什么场景下可以使用。Typst 是一种用来排版文档的标记语言。简单易学、速度快、用途广都是它的设计目标。将编写好的包含各种标记的文本文件输入 Typst，便能输出 PDF 文件。
 
-写作文、写文章，乃至写论文、书、报告以及作业，Typst 都是一个好选择。此外，Typst 十分适合编写包含数学记号的文档，比如数理以及工程方面的论文。得益于其在样式以及自动化方面的鲜明特点，对于任何需要统一样式的文档编写工作，Typst 都是一个极佳的选择。
+对于任何长篇文本的编纂工作，例如作文、文章、论文、书、报告以及作业，Typst 都是个好选择。此外，Typst 十分适合编写包含数学记号的文档，比如数理以及工程方面的论文。得益于其在样式以及自动化方面的鲜明特点，对于任何需要统一样式的文档编写工作，Typst 都是一个极佳的选择。
 
 <original>
 Before we get started, let's check what Typst is and when to use it. Typst is a
