@@ -2,7 +2,26 @@
 description: Typst's tutorial.
 ---
 
-# Writing in Typst
+# 使用 Typst 编写文档
+
+让我们开始吧！
+
+假设你的大学布置你编写一篇技术报告，里面会包含文段、数学公式、大小标题以及各种图形。你在 Typst app 里创建了一个新的项目，然后页面会跳转到编辑器里。编辑器有两栏：一个是用来编写你的文档的源代码栏（source panel），另一个是用来查看渲染后的内容的预览栏（preview panel）。
+
+![Typst app screenshot](1-writing-app.png)
+
+现在你的头脑中对这一报告已经有了不错的构思，现在让我们从编写介绍部分开始。在编辑器栏里输入一些文本，你会发现它们立即出现在了预览页中。
+
+```example
+
+在这篇报告里，我们将探索影响冰川的流体动力学的多种因素，
+以及它们如何促成这些自然结构的形成和活动。
+
+```
+
+_在整篇教程中，我们都会按照上面的方式展示代码的示例。如同 app 中的那样，第一栏里写含标记的内容，第二栏展示内容的预览。为了能够容下这些例子，我们对页面进行了缩减，以便你观察其中的过程。_
+
+<original>
 Let's get started! Suppose you got assigned to write a technical report for
 university. It will contain prose, maths, headings, and figures. To get started,
 you create a new project on the Typst app. You'll be taken to the editor where
@@ -66,6 +85,8 @@ the first item of the list above by indenting it.
 + The topography
 + The geology
 ```
+
+</original>
 
 ## Adding a figure { #figure }
 You think that your report would benefit from a figure. Let's add one. Typst
