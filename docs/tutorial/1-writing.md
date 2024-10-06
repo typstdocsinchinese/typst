@@ -493,7 +493,6 @@ complete list of all functions that math mode makes available.
 还有一件事：许多符号有不同的变种，比如箭头。你可以通过在这一符号的名称后面加上点（`.`）和修饰名来选择一个变种：
 
 <original>
-
 One more thing: Many symbols, such as the arrow, have a lot of variants. You can
 select among these variants by appending a dot and a modifier name to a symbol's
 name:
@@ -527,7 +526,6 @@ can peruse the [reference] to learn more about these and other features.
 目前为止，你已经完成了你的报告。通过点击页面右上角的下载按钮，你已经保存了一份 PDF 文件。然而，你认为这个报告可能看上去有一点过于朴素了。在下一章，我们将了解如何自定义文档的外观。
 
 <original>
-
 For the moment, you have completed writing your report. You have already saved a
 PDF by clicking on the download button in the top right corner. However, you
 think the report could look a bit less plain. In the next section, we'll learn
