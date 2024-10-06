@@ -390,7 +390,7 @@ function definitions, and [code blocks]($scripting).
 
 ## 回顾
 
-现在你知道如何向你的 Typst 文档添加一些基础的格式了。你学会了如何设置字体、对齐段落、设置页面大小以及利用 set rules 为标题添加标号。你还了解到如何用基础的 set rule 来改变全文中文本的展示形式。
+现在你知道如何向你的 Typst 文档添加一些基础的格式了。你学会了如何设置字体、对齐段落、设置页面大小以及利用 set rules 为标题添加标号。你还了解到如何用基础的 set rule 来整体改变文本的展示形式。
 
 <original>
 You now know how to apply basic formatting to your Typst documents. You learned
@@ -399,7 +399,7 @@ add numbering to your headings with set rules. You also learned how to use a
 basic show rule to change how text appears throughout your document.
 </original>
 
-你上交了你的报告。你的导师看了非常高兴，他们一行人想要将它改编成一篇会议论文（conference paper）！在下一章，我们会了解如何利用更高阶的 show rules 和函数，将你的文档排版成一篇论文。
+你上交了你的报告。你的导师看了非常高兴，因此他们一行人想要将你的报告改编成一篇会议论文（conference paper）！在下一章里，我们会了解如何利用更高阶的 show rules 和函数将你的文档排版成一篇论文。
 
 <original>
 You have handed in your report. Your supervisor was so happy with it that they
