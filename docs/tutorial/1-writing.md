@@ -9,9 +9,23 @@ description: Typst's tutorial.
 
 假设你的大学布置你编写一篇技术报告，里面会包含文段、数学公式、大小标题以及各种图形。你在 Typst app 里创建了一个新的项目，然后页面会跳转到编辑器里。编辑器有两栏：一个是用来编写你的文档的源代码栏（source panel），另一个是用来查看渲染后的内容的预览栏（preview panel）。
 
+<original>
+Let's get started! Suppose you got assigned to write a technical report for
+university. It will contain prose, maths, headings, and figures. To get started,
+you create a new project on the Typst app. You'll be taken to the editor where
+you see two panels: A source panel where you compose your document and a
+preview panel where you see the rendered document.
+</original>
+
 ![Typst app screenshot](1-writing-app.png)
 
 现在你的头脑中对这一报告已经有了不错的构思，让我们从编写介绍（Introduction）部分开始。在编辑器栏里输入一些文本，你会发现它们立即出现在了预览页中。
+
+<original>
+You already have a good angle for your report in mind. So let's start by writing
+the introduction. Enter some text in the editor panel. You'll notice that the
+text immediately appears on the previewed page.
+</original>
 
 ```example
 
@@ -20,9 +34,30 @@ description: Typst's tutorial.
 
 ```
 
+<original>
+```example
+In this report, we will explore the
+various factors that influence fluid
+dynamics in glaciers and how they
+contribute to the formation and
+behaviour of these natural structures.
+```
+</original>
+
 _在整篇教程中，我们都会按照这样的方式展示代码的示例。如同 app 中的那样，第一栏里写含标记的内容，第二栏展示内容的预览。为了能够容下这些例子，我们对页面进行了缩减，以便你观察其中的过程。_
 
+<original>
+_Throughout this tutorial, we'll show code examples like this one. Just like in the app, the first panel contains markup and the second panel shows a preview. We shrunk the page to fit the examples so you can see what's going on._
+</original>
+
 下一步，添加一些标题和强调一部分文本。Typst 对于常见的格式采用简单的标记。添加标题可使用 `=` 符号。要用斜体来强调时，将文本用 `[_下划线_]` 来包含。
+
+<original>
+The next step is to add a heading and emphasize some text. Typst uses simple
+markup for the most common formatting tasks. To add a heading, enter the `=`
+character and to emphasize some text with italics, enclose it in
+`[_underscores_]`.
+</original>
 
 ```example
 = 简介
@@ -31,11 +66,36 @@ _在整篇教程中，我们都会按照这样的方式展示代码的示例。�
 以及它们如何促成这些自然结构的形成和活动。
 ```
 
+<original>
+```example
+= Introduction
+In this report, we will explore the
+various factors that influence _fluid
+dynamics_ in glaciers and how they
+contribute to the formation and
+behaviour of these natural structures.
+```
+</original>
+
 很简单吧！
 
 要新增段落，只需在两行文本之间加入一个空行。如果段落需要子标题，可用 `==`（而非 `=`）来生成。`=` 的数量决定了这些标题的嵌套层级。
 
+<original>
+That was easy! To add a new paragraph, just add a blank line in between two
+lines of text. If that paragraph needs a subheading, produce it by typing `==`
+instead of `=`. The number of `=` characters determines the nesting level of the
+heading.
+</original>
+
 现在我们想要列出一些影响冰川的动力学的例子。为了达成这一效果，我们会用到标号列表（numbered list，或称有序列表）。对列表中的任意项，在开头输入 `+` 符号。Typst 会自动地为这些项目编号。
+
+<original>
+Now we want to list a few of the circumstances that influence glacier dynamics.
+To do that, we use a numbered list. For each item of the list, we type a `+`
+character at the beginning of the line. Typst will automatically number the
+items.
+</original>
 
 ```example
 + 气候
@@ -43,7 +103,21 @@ _在整篇教程中，我们都会按照这样的方式展示代码的示例。�
 + 地质
 ```
 
+<original>
+```example
++ The climate
++ The topography
++ The geology
+```
+</original>
+
 如果我们想要添加标点的列表（bulleted list，或称无序列表），可使用 `-` 替代 `+`。列表也可以嵌套：可通过缩进，在上面的列表的第一项添加一个子列表。
+
+<original>
+If we wanted to add a bulleted list, we would use the `-` character instead of
+the `+` character. We can also nest lists: For example, we can add a sub-list to
+the first item of the list above by indenting it.
+</original>
 
 ```example
 + 气候
@@ -54,62 +128,6 @@ _在整篇教程中，我们都会按照这样的方式展示代码的示例。�
 ```
 
 <original>
-Let's get started! Suppose you got assigned to write a technical report for
-university. It will contain prose, maths, headings, and figures. To get started,
-you create a new project on the Typst app. You'll be taken to the editor where
-you see two panels: A source panel where you compose your document and a
-preview panel where you see the rendered document.
-
-![Typst app screenshot](1-writing-app.png)
-
-You already have a good angle for your report in mind. So let's start by writing
-the introduction. Enter some text in the editor panel. You'll notice that the
-text immediately appears on the previewed page.
-
-```example
-In this report, we will explore the
-various factors that influence fluid
-dynamics in glaciers and how they
-contribute to the formation and
-behaviour of these natural structures.
-```
-
-_Throughout this tutorial, we'll show code examples like this one. Just like in the app, the first panel contains markup and the second panel shows a preview. We shrunk the page to fit the examples so you can see what's going on._
-
-The next step is to add a heading and emphasize some text. Typst uses simple
-markup for the most common formatting tasks. To add a heading, enter the `=`
-character and to emphasize some text with italics, enclose it in
-`[_underscores_]`.
-
-```example
-= Introduction
-In this report, we will explore the
-various factors that influence _fluid
-dynamics_ in glaciers and how they
-contribute to the formation and
-behaviour of these natural structures.
-```
-
-That was easy! To add a new paragraph, just add a blank line in between two
-lines of text. If that paragraph needs a subheading, produce it by typing `==`
-instead of `=`. The number of `=` characters determines the nesting level of the
-heading.
-
-Now we want to list a few of the circumstances that influence glacier dynamics.
-To do that, we use a numbered list. For each item of the list, we type a `+`
-character at the beginning of the line. Typst will automatically number the
-items.
-
-```example
-+ The climate
-+ The topography
-+ The geology
-```
-
-If we wanted to add a bulleted list, we would use the `-` character instead of
-the `+` character. We can also nest lists: For example, we can add a sub-list to
-the first item of the list above by indenting it.
-
 ```example
 + The climate
   - Temperature
@@ -117,16 +135,11 @@ the first item of the list above by indenting it.
 + The topography
 + The geology
 ```
-
 </original>
 
-## 添加图片 { #figure }
+## 添加图片
 
 你觉得在报告里加一个图表会更好，现在让我们来试着添加一个。Typst 支持 PNG、JPEG、GIF 和 SVG 格式的图片。要在项目中新增一个图片文件，首先点击左侧的箱形图表打开 _文件栏_。在这里你可以看到包含项目中所有文件的列表。目前这里只有一个文件：你正在编写的这个主 Typst 文件。要上传文件夹内，点击右上角的箭头图标。这会打开一个上传对话框，你可以在这里挑选要从你电脑上传的一个或多个文件。
-
-为你的报告选择一个图片文件。
-
-![Upload dialog](1-writing-upload.png)
 
 <original>
 You think that your report would benefit from a figure. Let's add one. Typst
@@ -138,6 +151,12 @@ click the button with the arrow in the top-right corner. This opens the upload
 dialog, in which you can pick files to upload from your computer. Select an
 image file for your report.
 </original>
+
+为你的报告选择一个图片文件。
+
+![Upload dialog](1-writing-upload.png)
+
+
 
 前面我们已经知晓，在 Typst 中某些符号（称为 _标记_）具有特殊的含义。我们用分别用 `=`、`-`、`+` 和 `_` 创建标题、列表和强调的文本。然而，要是为所有我们想要插入到文档中的元素都单独设置一个特殊符号，使用起来会变得晦涩又臃肿。因此，Typst 只为那些最常见的格式保留了标记符号。其余的则使用 _函数_ 来插入。对于我们要展示的图片，我们会用到 Typst 的 [`image`] 函数。
 
@@ -275,17 +294,19 @@ valid kind of content.
 </div>
 </original>
 
-## 添加参考书目 { #bibliography }
+## 添加参考书目
 
 随着报告的不断完善，你需要为你的一些阐述做支撑。你可以用 [`bibliography`] 函数为你的文档添加参考书目，这一函数接受一个指向书目文件（bibliography file）的路径。
-
-Typst 中原生的引用格式是 [Hayagriva](https://github.com/typst/hayagriva/blob/main/docs/file-format.md) 但是为了兼容性你也可以使用 BibLaTeX 文件。现在你的同学已经完成了文献综述（literature survey）并发给你了一个 `.bib` 格式的文件，接下来你将采用这个文件。现在，在 Typst 中的文件栏上传这个文件并访问它。
 
 <original>
 As you write up your report, you need to back up some of your claims. You can
 add a bibliography to your document with the [`bibliography`] function. This
 function expects a path to a bibliography file.
+</original>
 
+Typst 中原生的引用格式是 [Hayagriva](https://github.com/typst/hayagriva/blob/main/docs/file-format.md) 但是为了兼容性你也可以使用 BibLaTeX 文件。现在你的同学已经完成了文献综述（literature survey）并发给你了一个 `.bib` 格式的文件，接下来你将采用这个文件。现在，在 Typst 中的文件栏上传这个文件并访问它。
+
+<original>
 Typst's native bibliography format is
 [Hayagriva](https://github.com/typst/hayagriva/blob/main/docs/file-format.md),
 but for compatibility you can also use BibLaTeX files. As your classmate has
@@ -320,11 +341,6 @@ After fleshing out the methods section, you move on to the meat of the document:
 Your equations. Typst has built-in mathematical typesetting and uses its own
 math notation. Let's start with a simple equation. We wrap it in `[$]` signs
 to let Typst know it should expect a mathematical expression:
-
-```example
-The equation $Q = rho A v + C$
-defines the glacial flow rate.
-```
 </original>
 
 ```example
@@ -332,7 +348,20 @@ defines the glacial flow rate.
 定义了冰川的流速。
 ```
 
+<original>
+```example
+The equation $Q = rho A v + C$
+defines the glacial flow rate.
+```
+</original>
+
 这一公式是在行内排版的，与它周围的文本在同一行。如果想要它另起一行，应该在公式的开头和末尾加入空格。
+
+<original>
+The equation is typeset inline, on the same line as the surrounding text. If you
+want to have it on its own line instead, you should insert a single space at its
+start and end:
+</original>
 
 ```example
 冰川的流速由下面的公式定义：
@@ -341,9 +370,6 @@ $ Q = rho A v + C $
 ```
 
 <original>
-The equation is typeset inline, on the same line as the surrounding text. If you
-want to have it on its own line instead, you should insert a single space at its
-start and end:
 
 ```example
 The flow rate of a glacier is
@@ -355,6 +381,14 @@ $ Q = rho A v + C $
 
 我们可以发现 Typst 原样显示了 `Q`、`A`、`v` 和 `c` 这些字母，而将 `rho` 翻译成了希腊字母。数学模式总会原样地展示字母。然而多个字母则会被解析为符号、变量或者函数名称。（因此，）要表示字母的乘法，请在字母之间插入空格。
 
+<original>
+We can see that Typst displayed the single letters `Q`, `A`, `v`, and `C` as-is,
+while it translated `rho` into a Greek letter. Math mode will always show single
+letters verbatim. Multiple letters, however, are interpreted as symbols,
+variables, or function names. To imply a multiplication between single letters,
+put spaces between them.
+</original>
+
 如果你想要展示一个名称有多个字母的数学变量，你可以用括号将其包围。
 
 ```example
@@ -364,12 +398,6 @@ $ Q = rho A v + "time offset" $
 ```
 
 <original>
-We can see that Typst displayed the single letters `Q`, `A`, `v`, and `C` as-is,
-while it translated `rho` into a Greek letter. Math mode will always show single
-letters verbatim. Multiple letters, however, are interpreted as symbols,
-variables, or function names. To imply a multiplication between single letters,
-put spaces between them.
-
 If you want to have a variable that consists of multiple letters, you can
 enclose it in quotes:
 
@@ -404,8 +432,22 @@ $ 7.32 beta +
 
 要向数学变量或符号添加下标，输入 `_` 紧跟下标的内容。类似地，上标用 `^` 来表示。如果你要输入的下标和上标包含多个元素，必须用圆括号将它们包围。
 
+<original>
+To add a subscript to a symbol or variable, type a `_` character and then the
+subscript. Similarly, use the `^` character for a superscript. If your
+sub- or superscript consists of multiple things, you must enclose them
+in round parentheses.
+</original>
+
 上面的例子还向我们展示了如何插入分式：只需在分子和分母之间放入一个 `/`，Typst 就会自动地将它变成分式。括号是自动解析的，因此你可以按照你想要的方式将表达式输入到计算器里，Typst 会将带括号的子表达式替换为恰当的记号。
 
+<original>
+The above example also showed us how to insert fractions: Simply put a `/`
+character between the numerator and the denominator and Typst will automatically
+turn it into a fraction. Parentheses are smartly resolved, so you can enter your
+expression as you would into a calculator and Typst will replace parenthesized
+sub-expressions with the appropriate notation.
+</original>
 
 ```example
 被冰川流置换的土地量：
@@ -416,16 +458,6 @@ $ 7.32 beta +
 ```
 
 <original>
-To add a subscript to a symbol or variable, type a `_` character and then the
-subscript. Similarly, use the `^` character for a superscript. If your
-sub- or superscript consists of multiple things, you must enclose them
-in round parentheses.
-
-The above example also showed us how to insert fractions: Simply put a `/`
-character between the numerator and the denominator and Typst will automatically
-turn it into a fraction. Parentheses are smartly resolved, so you can enter your
-expression as you would into a calculator and Typst will replace parenthesized
-sub-expressions with the appropriate notation.
 
 ```example
 Total displaced soil by glacial flow:
@@ -438,10 +470,6 @@ $ 7.32 beta +
 
 并不是所有的数学结构都有特殊的语法（译者注：这里特殊的语法是指像上标 `^` 下标 `_` 这样的特殊简易记号）。相反，我们会利用函数来表达其它结构，就像我们前面所见的 `image` 函数一样。例如，要插入一个列向量，我们可以使用 [`vec`]($math.vec) 函数。在数学模式下，函数调用也不需要以 `#` 开头。
 
-```example
-$ v := vec(x_1, x_2, x_3) $
-```
-
 <original>
 Not all math constructs have special syntax. Instead, we use functions, just
 like the `image` function we have seen before. For example, to insert a column
@@ -449,24 +477,31 @@ vector, we can use the [`vec`]($math.vec) function. Within math mode, function
 calls don't need to start with the `#` character.
 </original>
 
-有些函数只在数学模式下存在。例如 [`cal`]($math.cal) 函数用于排版出常用于表示集合的书法字体。[参考中的 math 部分]($category/math)提供了所有数学模式下可用的函数的列表。
-
-还有一件事：许多符号有不同的变种，比如箭头。你可以通过在这一符号的名称后面加上点（`.`）和修饰名来选择一个变种：
-
 ```example
-$ a arrow.squiggly b $
+$ v := vec(x_1, x_2, x_3) $
 ```
+
+有些函数只在数学模式下存在。例如 [`cal`]($math.cal) 函数用于排版出常用于表示集合的书法字体。[参考中的 math 部分]($category/math)提供了所有数学模式下可用的函数的列表。
 
 <original>
 Some functions are only available within math mode. For example, the
 [`cal`]($math.cal) function is used to typeset calligraphic letters commonly
 used for sets. The [math section of the reference]($category/math) provides a
 complete list of all functions that math mode makes available.
+</original>
+
+还有一件事：许多符号有不同的变种，比如箭头。你可以通过在这一符号的名称后面加上点（`.`）和修饰名来选择一个变种：
+
+<original>
 
 One more thing: Many symbols, such as the arrow, have a lot of variants. You can
 select among these variants by appending a dot and a modifier name to a symbol's
 name:
 </original>
+
+```example
+$ a arrow.squiggly b $
+```
 
 这个记号在标记模式下也同样可用，但是符号必须以 `#sym.` 开头。转到 [symbols 部分]($category/symbols/sym))来查看完整的可用符号列表。
 
@@ -480,8 +515,6 @@ for a list of all available symbols.
 
 现在你已经知道如何用 Typst 编写一个基本的文档了。你了解了如何去强调文本、编写列表、插入图片、对其内容以及排版数学表达式。你还了解了 Typst 中函数的内容。Typst 中有很多其它类型的内容可供你插入到文档中，例如[表格]($table)、[图形]($category/visualize)和[代码块]($raw)。你可以研读 [reference] 来了解更多特性。
 
-目前为止，你已经完成了你的报告。通过点击页面右上角的下载按钮，你已经保存了一份 PDF 文件。然而，你认为这个报告可能看上去有一点过于朴素了。在下一章，我们将了解如何自定义文档的外观。
-
 <original>
 You have now seen how to write a basic document in Typst. You learned how to
 emphasize text, write lists, insert images, align content, and typeset
@@ -489,9 +522,15 @@ mathematical expressions. You also learned about Typst's functions. There are
 many more kinds of content that Typst lets you insert into your document, such
 as [tables]($table), [shapes]($category/visualize), and [code blocks]($raw). You
 can peruse the [reference] to learn more about these and other features.
+</original>
+
+目前为止，你已经完成了你的报告。通过点击页面右上角的下载按钮，你已经保存了一份 PDF 文件。然而，你认为这个报告可能看上去有一点过于朴素了。在下一章，我们将了解如何自定义文档的外观。
+
+<original>
 
 For the moment, you have completed writing your report. You have already saved a
 PDF by clicking on the download button in the top right corner. However, you
 think the report could look a bit less plain. In the next section, we'll learn
 how to customize the look of our document.
 </original>
+
