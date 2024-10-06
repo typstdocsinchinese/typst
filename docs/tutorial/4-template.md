@@ -1,5 +1,6 @@
 ---
 description: Typst's tutorial.
+en_title: Making a Template
 ---
 
 # Making a Template

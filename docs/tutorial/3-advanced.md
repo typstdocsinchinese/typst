@@ -1,5 +1,6 @@
 ---
 description: Typst's tutorial.
+en_title: Advanced Styling
 ---
 
 # Advanced Styling

@@ -1,4 +1,5 @@
 ---
+en_title: Reference
 description: |
   The Typst reference is a systematic and comprehensive guide to the Typst
   typesetting language.

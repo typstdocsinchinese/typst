@@ -1,6 +1,7 @@
 ---
 description: |
    How to deal with content that reacts to its location in the document.
+en_title: Context
 ---
 
 # Context
