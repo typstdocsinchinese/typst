@@ -121,8 +121,9 @@ fn md_page(resolver: &dyn Resolver, parent: &str, md: &str) -> PageModel {
     assert!(parent.starts_with('/') && parent.ends_with('/'));
     let html = Html::markdown(resolver, md, Some(0));
     let title: EcoString = html.title().expect("chapter lacks a title").into();
+    let en_title = html.en_title().unwrap();
     PageModel {
-        route: eco_format!("{parent}{}/", urlify(&title)),
+        route: eco_format!("{parent}{}/", urlify(&(if en_title != "None" { en_title } else { title.clone() }))),
         title,
         description: html.description().unwrap(),
         part: None,

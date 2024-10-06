@@ -29,6 +29,8 @@ pub struct Html {
     description: Option<EcoString>,
     #[serde(skip)]
     outline: Vec<OutlineItem>,
+    #[serde(skip)]
+    en_title: Option<EcoString>,
 }
 
 impl Html {
@@ -39,6 +41,7 @@ impl Html {
             raw,
             description: None,
             outline: vec![],
+            en_title: None
         }
     }
 
@@ -47,10 +50,12 @@ impl Html {
     pub fn markdown(resolver: &dyn Resolver, md: &str, nesting: Option<usize>) -> Self {
         let mut text = md;
         let mut description = None;
+        let mut en_title = None;
         let document = YamlFrontMatter::parse::<Metadata>(md);
         if let Ok(document) = &document {
             text = &document.content;
-            description = Some(document.metadata.description.clone())
+            description = Some(document.metadata.description.clone());
+            en_title = Some(document.metadata.en_title.clone().unwrap_or("None".into()));
         }
 
         let options = md::Options::ENABLE_TABLES
@@ -99,6 +104,7 @@ impl Html {
             raw,
             description,
             outline: handler.outline,
+            en_title
         }
     }
 
@@ -133,6 +139,10 @@ impl Html {
     pub fn description(&self) -> Option<EcoString> {
         self.description.clone()
     }
+
+    pub fn en_title(&self) -> Option<EcoString> {
+        self.en_title.clone()
+    }
 }
 
 impl Debug for Html {
@@ -145,6 +155,7 @@ impl Debug for Html {
 #[derive(Deserialize)]
 struct Metadata {
     description: EcoString,
+    en_title: Option<EcoString>
 }
 
 struct Handler<'a> {
