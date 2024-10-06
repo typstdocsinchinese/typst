@@ -1,4 +1,5 @@
 ---
+en_title: Tutorial
 description: Typst's tutorial.
 ---
 
