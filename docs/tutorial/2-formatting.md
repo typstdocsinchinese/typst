@@ -324,7 +324,7 @@ they are only _syntax sugar_ for the corresponding function calls.
 
 ## Show rules
 
-你对目前的结果已经很满意了。但是还有一件事需要解决：你的报告是为一个更大的项目而编写的，即使是在简单陈述中，这个项目的名称应当随时和 Logo 一同出现，。
+你对目前的结果已经很满意了。但是还有一件事需要解决：你的报告是为一个更大的项目而编写的，即使是在简单陈述中，这个项目的名称应当随时和 Logo 一同出现。
 
 <original>
 You are already pretty happy with how this turned out. But one last thing needs
