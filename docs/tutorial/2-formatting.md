@@ -365,7 +365,7 @@ ArtosFlow project. ArtosFlow is a
 project of the Artos Institute.
 ```
 
-这个例子里有很多新的语法：我们写下 `{show}` 关键字并在其后跟上一个想要特殊展示的字符串，带一个冒号。然后编写了一个函数，以被展示内容作为参数。在这里，我们称该参数为 `name`。现在我们可以在函数体中用 `name` 这个参数来输出 ArtosFlow 这一名称。这里的 show rule 在名称的前面加上了 Logo 图标，并将最终结果放进了一个 box 里，从而避免图标与名称之间出现换行。为了避免独占一行，图标本身也被放在了 box 里。
+这个例子里有很多新的语法：我们写下 `{show}` 关键字并在其后跟上一个想要特殊展示的字符串，带一个冒号。冒号后跟一个函数，它以原文本作为参数，这里我们称之为 `name`。函数体中可以用 `name` 这个参数来输出 ArtosFlow 这一名称。在这里的 show rule 中，名称的前面被加上了 Logo 图标，并将最终结果放进了一个 box 里，避免了图标与名称之间出现换行。同时为了避免图标本身独占一行，它也被放在了一个 box 里。
 
 <original>
 There is a lot of new syntax in this example: We write the `{show}` keyword,
