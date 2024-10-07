@@ -119,7 +119,7 @@ size to `{11pt}` and the font to Libertinus Serif. We also enable paragraph
 justification and set the page size to US letter.
 </original>
 
-这里的 `header` 参数是之前没有遇到过的。我们可以通过它来设置每一页页眉的内容。于是我们按照会议的标准在页眉中设定了论文的标题。我们用 `align` 函数将文本右对齐。
+这里的 `header` 参数是之前没有遇到过的。我们可以通过它来设置每一页页眉的内容。于是我们按照会议的标准在页眉中设定了论文的标题，并用 `align` 函数将文本右对齐。
 
 <original>
 The `header` argument is new: With it, we can provide content to fill the top
