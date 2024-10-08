@@ -189,7 +189,7 @@ supervisor, we'll add our own and their name.
 )
 ```
 
-这两个包含作者的块是并排排列的，这一布局方式用 [`grid`] 来实现。在 grid 中，我们可以控制每一列的大小和内容。`columns` 参数接受一个 [相对长度]($relative) 或者 [分数]($fraction)（fraction）类型的参数。在这个例子中，我们传入了两个相等的分数值，使它将空闲区域分割为两个同等大小的列。<br/>随后我们向 grid 函数传入了两个聂荣参数，第一个是我们自己的具体信息，第二个是导师的。我们再次用到了 `align` 函数来居中列中的内容。grid 函数接受任意多的内容参数。行会根据需要自动添加，但你也可以用 `rows` 参数手动设置大小。
+这两个包含作者的块是并排排列的，这一布局方式用 [`grid`] 来实现。借助 grid，我们可以设置每一列的大小，并控制哪些列该放哪些内容。`columns` 参数接受一个 [相对长度]($relative) 或者 [分数]($fraction)（fraction）类型的参数。在这个例子中，我们传入了两个相等的分数值，使它将空闲区域分割为两个同等大小的列。<br/>随后我们向 grid 函数传入了两个内容参数，第一个是我们自己的具体信息，第二个是导师的。我们再次用到了 `align` 函数来居中列的内容。grid 函数接受任意多的内容参数，它会根据需要自动新增行，你也可以用 `rows` 参数手动设置行的大小。
 
 <original>
 The two author blocks are laid out next to each other. We use the [`grid`]
