@@ -70,8 +70,10 @@ is what you will learn in each of them:
    list and run-in headings.
 4. [Making a Template:]($tutorial/making-a-template) Build a reusable template
    from the paper you created in the previous chapter.
-
-We hope you'll enjoy Typst!
 </original>
 
 希望你能享受这段 Typst 之旅！
+
+<original>
+We hope you'll enjoy Typst!
+</original>
