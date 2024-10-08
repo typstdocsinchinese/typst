@@ -209,7 +209,7 @@ behaviour of these natural structures.
 
 页面大小是一个字符串，Typst 接受许多[标准的页面大小]($page.paper)，不过你也可以自定义。
 
-边距以[字典]($dictionary)的形式指定。字典是一组键值对（key-value pairs）。在这个例子中，键是 `x` 和 `y`，值分别是水平和垂直的边距。在这里可以通过在字典中带上 `{left}`、`{right}`、`{top}` 和 `{bottom}` 来分别指定每个方向的边距。
+边距以[字典]($dictionary)（一组键值对，key-value pairs）的形式指定。在这个例子中，键是 `x` 和 `y`，值分别是水平和垂直的边距。在这里可以通过在字典中带上 `{left}`、`{right}`、`{top}` 和 `{bottom}` 来分别指定每个方向的边距。
 
 <original>
 There are a few things of note here.
