@@ -430,11 +430,11 @@ want to import.
 #lorem(200)
 ```
 
-现在我们已经成功把一篇会议论文转成了可复用的模板！为什么不在 [Typst 的 Discord](https://discord.gg/2uDybryKPe) 上分享一番呢？这样其他人也可以用到它了。
+现在我们已经成功把一篇会议论文转成了可复用的模板！为什么不在 Typst 的[官方论坛](https://forum.typst.app/) 或者 [Discord](https://discord.gg/2uDybryKPe) 上分享一番呢？这样其他人也可以用到它了。
 
 <original>
 We have now converted the conference paper into a reusable template for that
-conference! Why not share it on
+conference! Why not share it in the [Forum](https://forum.typst.app/) or on
 [Typst's Discord server](https://discord.gg/2uDybryKPe) so that others can use
 it too?
 </original>
@@ -450,14 +450,15 @@ that define reusable document styles. You've made it far and learned a lot. You
 can now use Typst to write your own documents and share them with others.
 </original>
 
-我们目前仍然是一个非常年轻的项目，期待着任何反馈。如果你有任何问题或建议，或者你发现了 bug，请在 [Typst 的 Discord](https://discord.gg/2uDybryKPe)、[联系表](https://typst.app/contact)或者[社交媒体](https://twitter.com/typstapp)上告诉我们。
+我们目前仍然是一个非常年轻的项目，期待着任何反馈。如果你有任何问题或建议，或者你发现了 bug，请在 Typst 的 [论坛]((https://forum.typst.app/))、[Discord](https://discord.gg/2uDybryKPe) 或者 [GitHub](https://github.com/typst/typst/)上告诉我们，或者你也可以通过 web app 中的反馈表进行反馈（可以在帮助菜单中找到）。
 
 <original>
 We are still a super young project and are looking for feedback. If you have any
-questions, suggestions or you found a bug, please let us know on
-[Typst's Discord server](https://discord.gg/2uDybryKPe), on our
-[contact form](https://typst.app/contact), or on
-[social media.](https://twitter.com/typstapp)
+questions, suggestions or you found a bug, please let us know
+in the [Forum](https://forum.typst.app/),
+on our [Discord server](https://discord.gg/2uDybryKPe),
+on [GitHub](https://github.com/typst/typst/),
+or via the web app's feedback form (always available in the Help menu).
 </original>
 
 所以你还在等什么呢？现在[注册](https://typst.app)然后写点什么吧！

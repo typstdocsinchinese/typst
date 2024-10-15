@@ -161,13 +161,13 @@ font. For the purposes of the example, we'll also set another page size.
 </original>
 
 ```example
-#set text(
-  font: "New Computer Modern",
-  size: 10pt
-)
 #set page(
   paper: "a6",
   margin: (x: 1.8cm, y: 1.5cm),
+)
+#set text(
+  font: "New Computer Modern",
+  size: 10pt
 )
 #set par(
   justify: true,

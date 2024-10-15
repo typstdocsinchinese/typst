@@ -37,7 +37,7 @@ use icu_provider_blob::BlobDataProvider;
 use once_cell::sync::Lazy;
 use rustybuzz::Feature;
 use smallvec::SmallVec;
-use ttf_parser::{Rect, Tag};
+use ttf_parser::Tag;
 
 use crate::diag::{bail, warning, HintedStrResult, SourceResult};
 use crate::engine::Engine;
@@ -445,9 +445,10 @@ pub struct TextElem {
     /// the other way around in `rtl` text.
     ///
     /// If you set this to `rtl` and experience bugs or in some way bad looking
-    /// output, please do get in touch with us through the
-    /// [contact form](https://typst.app/contact) or our
-    /// [Discord server](https://discord.gg/2uDybryKPe)!
+    /// output, please get in touch with us through the
+    /// [Forum](https://forum.typst.app/),
+    /// [Discord server](https://discord.gg/2uDybryKPe),
+    /// or our [contact form](https://typst.app/contact).
     ///
     /// ```example
     /// #set text(dir: rtl)
@@ -482,8 +483,9 @@ pub struct TextElem {
 
     /// The "cost" of various choices when laying out text. A higher cost means
     /// the layout engine will make the choice less often. Costs are specified
-    /// as a ratio of the default cost, so `50%` will make text layout twice as
-    /// eager to make a given choice, while `200%` will make it half as eager.
+    /// as a ratio of the default cost, so `{50%}` will make text layout twice
+    /// as eager to make a given choice, while `{200%}` will make it half as
+    /// eager.
     ///
     /// Currently, the following costs can be customized:
     /// - `hyphenation`: splitting a word across multiple lines
@@ -501,10 +503,10 @@ pub struct TextElem {
     /// Text layout prevents widows and orphans by default because they are
     /// generally discouraged by style guides. However, in some contexts they
     /// are allowed because the prevention method, which moves a line to the
-    /// next page, can result in an uneven number of lines between pages.
-    /// The `widow` and `orphan` costs allow disabling these modifications.
-    /// (Currently, 0% allows widows/orphans; anything else, including the
-    /// default of `auto`, prevents them. More nuanced cost specification for
+    /// next page, can result in an uneven number of lines between pages. The
+    /// `widow` and `orphan` costs allow disabling these modifications.
+    /// (Currently, `{0%}` allows widows/orphans; anything else, including the
+    /// default of `{100%}`, prevents them. More nuanced cost specification for
     /// these modifications is planned for the future.)
     ///
     /// ```example
@@ -568,9 +570,9 @@ pub struct TextElem {
     /// This can be set to an integer or an array of integers, all
     /// of which must be between `{1}` and `{20}`, enabling the
     /// corresponding OpenType feature(s) from `ss01` to `ss20`.
-    /// Setting this to `none` will disable all stylistic sets.
+    /// Setting this to `{none}` will disable all stylistic sets.
     ///
-    /// ```
+    /// ```example
     /// #set text(font: "IBM Plex Serif")
     /// ß vs #text(stylistic-set: 5)[ß] \
     /// 10 years ago vs #text(stylistic-set: (1, 2, 3))[10 years ago]
@@ -891,28 +893,6 @@ pub enum TopEdge {
     Length(Length),
 }
 
-impl TopEdge {
-    /// Determine if the edge is specified from bounding box info.
-    pub fn is_bounds(&self) -> bool {
-        matches!(self, Self::Metric(TopEdgeMetric::Bounds))
-    }
-
-    /// Resolve the value of the text edge given a font's metrics.
-    pub fn resolve(self, font_size: Abs, font: &Font, bbox: Option<Rect>) -> Abs {
-        match self {
-            TopEdge::Metric(metric) => {
-                if let Ok(metric) = metric.try_into() {
-                    font.metrics().vertical(metric).at(font_size)
-                } else {
-                    bbox.map(|bbox| (font.to_em(bbox.y_max)).at(font_size))
-                        .unwrap_or_default()
-                }
-            }
-            TopEdge::Length(length) => length.at(font_size),
-        }
-    }
-}
-
 cast! {
     TopEdge,
     self => match self {
@@ -959,28 +939,6 @@ pub enum BottomEdge {
     Metric(BottomEdgeMetric),
     /// An edge specified as a length.
     Length(Length),
-}
-
-impl BottomEdge {
-    /// Determine if the edge is specified from bounding box info.
-    pub fn is_bounds(&self) -> bool {
-        matches!(self, Self::Metric(BottomEdgeMetric::Bounds))
-    }
-
-    /// Resolve the value of the text edge given a font's metrics.
-    pub fn resolve(self, font_size: Abs, font: &Font, bbox: Option<Rect>) -> Abs {
-        match self {
-            BottomEdge::Metric(metric) => {
-                if let Ok(metric) = metric.try_into() {
-                    font.metrics().vertical(metric).at(font_size)
-                } else {
-                    bbox.map(|bbox| (font.to_em(bbox.y_min)).at(font_size))
-                        .unwrap_or_default()
-                }
-            }
-            BottomEdge::Length(length) => length.at(font_size),
-        }
-    }
 }
 
 cast! {
@@ -1326,16 +1284,6 @@ pub(crate) fn is_default_ignorable(c: char) -> bool {
         .unwrap()
     });
     DEFAULT_IGNORABLE_DATA.as_borrowed().contains(c)
-}
-
-/// Pushes `text` wrapped in LRE/RLE + PDF to `out`.
-pub(crate) fn isolate(text: Content, styles: StyleChain, out: &mut Vec<Content>) {
-    out.push(TextElem::packed(match TextElem::dir_in(styles) {
-        Dir::RTL => "\u{202B}",
-        _ => "\u{202A}",
-    }));
-    out.push(text);
-    out.push(TextElem::packed("\u{202C}"));
 }
 
 /// Checks for font families that are not available.

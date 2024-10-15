@@ -85,8 +85,8 @@ impl Location {
     /// local numbering. This is useful if you are building custom indices or
     /// outlines.
     ///
-    /// If the page numbering is set to `none` at that location, this function
-    /// returns `none`.
+    /// If the page numbering is set to `{none}` at that location, this function
+    /// returns `{none}`.
     #[func]
     pub fn page_numbering(self, engine: &mut Engine) -> Option<Numbering> {
         engine.introspector.page_numbering(self).cloned()
@@ -105,5 +105,9 @@ impl Repr for Location {
     }
 }
 
-/// Makes this element locatable through `engine.locate`.
+/// Makes this element as locatable through the introspector.
 pub trait Locatable {}
+
+/// Marks this element as not being queryable even though it is locatable for
+/// internal reasons.
+pub trait Unqueriable {}

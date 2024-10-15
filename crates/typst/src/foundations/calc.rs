@@ -10,7 +10,7 @@ use crate::eval::ops;
 use crate::foundations::{cast, func, Decimal, IntoValue, Module, Scope, Value};
 use crate::layout::{Angle, Fr, Length, Ratio};
 use crate::syntax::{Span, Spanned};
-use crate::utils::round_with_precision;
+use crate::utils::{round_int_with_precision, round_with_precision};
 
 /// A module with calculation definitions.
 pub fn module() -> Module {
@@ -92,7 +92,7 @@ cast! {
 /// Raises a value to some exponent.
 ///
 /// ```example
-/// #calc.pow(2, 3)
+/// #calc.pow(2, 3) \
 /// #calc.pow(decimal("2.5"), 2)
 /// ```
 #[func(title = "Power")]
@@ -236,7 +236,6 @@ pub fn root(
 /// radians.
 ///
 /// ```example
-/// #assert(calc.sin(90deg) == calc.sin(-270deg))
 /// #calc.sin(1.5) \
 /// #calc.sin(90deg)
 /// ```
@@ -258,7 +257,6 @@ pub fn sin(
 /// radians.
 ///
 /// ```example
-/// #calc.cos(90deg) \
 /// #calc.cos(1.5) \
 /// #calc.cos(90deg)
 /// ```
@@ -621,10 +619,10 @@ pub fn lcm(
 /// 64-bit signed integer or smaller than the minimum for that type.
 ///
 /// ```example
+/// #calc.floor(500.1)
 /// #assert(calc.floor(3) == 3)
 /// #assert(calc.floor(3.14) == 3)
 /// #assert(calc.floor(decimal("-3.14")) == -4)
-/// #calc.floor(500.1)
 /// ```
 #[func]
 pub fn floor(
@@ -648,10 +646,10 @@ pub fn floor(
 /// 64-bit signed integer or smaller than the minimum for that type.
 ///
 /// ```example
+/// #calc.ceil(500.1)
 /// #assert(calc.ceil(3) == 3)
 /// #assert(calc.ceil(3.14) == 4)
 /// #assert(calc.ceil(decimal("-3.14")) == -3)
-/// #calc.ceil(500.1)
 /// ```
 #[func]
 pub fn ceil(
@@ -675,10 +673,10 @@ pub fn ceil(
 /// 64-bit signed integer or smaller than the minimum for that type.
 ///
 /// ```example
+/// #calc.trunc(15.9)
 /// #assert(calc.trunc(3) == 3)
 /// #assert(calc.trunc(-3.7) == -3)
 /// #assert(calc.trunc(decimal("8493.12949582390")) == 8493)
-/// #calc.trunc(15.9)
 /// ```
 #[func(title = "Truncate")]
 pub fn trunc(
@@ -698,9 +696,9 @@ pub fn trunc(
 /// If the number is an integer, returns `0`.
 ///
 /// ```example
+/// #calc.fract(-3.1)
 /// #assert(calc.fract(3) == 0)
 /// #assert(calc.fract(decimal("234.23949211")) == decimal("0.23949211"))
-/// #calc.fract(-3.1)
 /// ```
 #[func(title = "Fractional")]
 pub fn fract(
@@ -714,9 +712,12 @@ pub fn fract(
     }
 }
 
-/// Rounds a number to the nearest integer.
+/// Rounds a number to the nearest integer away from zero.
 ///
 /// Optionally, a number of decimal places can be specified.
+///
+/// If the number of digits is negative, its absolute value will indicate the
+/// amount of significant integer digits to remove before the decimal point.
 ///
 /// Note that this function will return the same type as the operand. That is,
 /// applying `round` to a [`float`] will return a `float`, and to a [`decimal`],
@@ -725,40 +726,59 @@ pub fn fract(
 /// `float` or `decimal` is larger than the maximum 64-bit signed integer or
 /// smaller than the minimum integer.
 ///
+/// In addition, this function can error if there is an attempt to round beyond
+/// the maximum or minimum integer or `decimal`. If the number is a `float`,
+/// such an attempt will cause `{float.inf}` or `{-float.inf}` to be returned
+/// for maximum and minimum respectively.
+///
 /// ```example
+/// #calc.round(3.1415, digits: 2)
 /// #assert(calc.round(3) == 3)
 /// #assert(calc.round(3.14) == 3)
 /// #assert(calc.round(3.5) == 4.0)
+/// #assert(calc.round(3333.45, digits: -2) == 3300.0)
+/// #assert(calc.round(-48953.45, digits: -3) == -49000.0)
+/// #assert(calc.round(3333, digits: -2) == 3300)
+/// #assert(calc.round(-48953, digits: -3) == -49000)
 /// #assert(calc.round(decimal("-6.5")) == decimal("-7"))
 /// #assert(calc.round(decimal("7.123456789"), digits: 6) == decimal("7.123457"))
-/// #calc.round(3.1415, digits: 2)
+/// #assert(calc.round(decimal("3333.45"), digits: -2) == decimal("3300"))
+/// #assert(calc.round(decimal("-48953.45"), digits: -3) == decimal("-49000"))
 /// ```
 #[func]
 pub fn round(
     /// The number to round.
     value: DecNum,
-    /// The number of decimal places. Must not be negative.
+    /// If positive, the number of decimal places.
+    ///
+    /// If negative, the number of significant integer digits that should be
+    /// removed before the decimal point.
     #[named]
     #[default(0)]
-    digits: u32,
-) -> DecNum {
+    digits: i64,
+) -> StrResult<DecNum> {
     match value {
-        DecNum::Int(n) => DecNum::Int(n),
+        DecNum::Int(n) => Ok(DecNum::Int(
+            round_int_with_precision(n, digits.saturating_as::<i16>())
+                .ok_or_else(too_large)?,
+        )),
         DecNum::Float(n) => {
-            DecNum::Float(round_with_precision(n, digits.saturating_as::<u8>()))
+            Ok(DecNum::Float(round_with_precision(n, digits.saturating_as::<i16>())))
         }
-        DecNum::Decimal(n) => DecNum::Decimal(n.round(digits)),
+        DecNum::Decimal(n) => Ok(DecNum::Decimal(
+            n.round(digits.saturating_as::<i32>()).ok_or_else(too_large)?,
+        )),
     }
 }
 
 /// Clamps a number between a minimum and maximum value.
 ///
 /// ```example
+/// #calc.clamp(5, 0, 4)
 /// #assert(calc.clamp(5, 0, 10) == 5)
 /// #assert(calc.clamp(5, 6, 10) == 6)
 /// #assert(calc.clamp(decimal("5.45"), 2, decimal("45.9")) == decimal("5.45"))
 /// #assert(calc.clamp(decimal("5.45"), decimal("6.75"), 12) == decimal("6.75"))
-/// #calc.clamp(5, 0, 4)
 /// ```
 #[func]
 pub fn clamp(
@@ -969,7 +989,7 @@ pub fn div_euclid(
 /// #calc.rem-euclid(7, -3) \
 /// #calc.rem-euclid(-7, 3) \
 /// #calc.rem-euclid(-7, -3) \
-/// #calc.rem-euclid(1.75, 0.5)
+/// #calc.rem-euclid(1.75, 0.5) \
 /// #calc.rem-euclid(decimal("1.75"), decimal("0.5"))
 /// ```
 #[func(title = "Euclidean Remainder")]
