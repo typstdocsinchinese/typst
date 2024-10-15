@@ -20,7 +20,7 @@ use with just one show rule. Let's get started!
 
 ## 玩具模板
 
-在 Typst 中，模板是一种可包含整个文档的函数。要想知道如何写出这样一个函数，我们先回顾一下函数该怎么写。试想既然函数可以做几乎任何事情，为什么不来点奇思妙想呢？
+在 Typst 中，模板是一种可包含整个文档的函数。要想了解如何写出这样一个函数，我们需要先回顾一下函数该怎么写。既然函数可以做几乎任何事情，为什么不来点奇思妙想呢？请看：
 
 <original>
 In Typst, templates are functions in which you can wrap your whole document. To
