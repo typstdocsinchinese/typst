@@ -337,7 +337,7 @@ to be fixed: The report you are writing is intended for a larger project and
 that project's name should always be accompanied by a logo, even in prose.
 </original>
 
-你思考着一些解法。或许，你可以通过查找与替换功能，在每个 Logo 文本出现的地方都添加一个 `[#image("logo.svg")]` 调用。但这看起来十分冗余。除去这种办法，你还可以[自己定义一个函数]($function/#defining-functions)，并使它返回 Logo 文本和图案。<br/>不过，我们有一个更简单的方法：利用 show rules，你可以重新定义 Typst 展示某些元素的方式。你可以指定哪些元素应该被特殊展示，以及相应的展示效果。Show rules 可以应用到文本实例，各种函数乃至整个文档。
+你思考着一些解法。或许，你可以通过查找与替换功能，在每个 Logo 文本出现的地方都添加一个 `[#image("logo.svg")]` 调用。但这看起来十分冗余。除了这种办法，你还可以[自己定义一个函数]($function/#defining-functions)，并使它返回 Logo 文本和图案——不过，我们有一个更简单的方法：利用 show rules 来重新定义元素的展示方式。你可以指定哪些元素应该被特殊展示，以及相应的展示效果。Show rules 可以应用到文本实例，各种函数乃至整个文档。
 
 <original>
 You consider your options. You could add an `[#image("logo.svg")]` call before
@@ -345,7 +345,6 @@ every instance of the logo using search and replace. That sounds very tedious.
 Instead, you could maybe
 [define a custom function]($function/#defining-functions) that always yields the
 logo with its image. However, there is an even easier way:
-
 With show rules, you can redefine how Typst displays certain elements. You
 specify which elements Typst should show differently and how they should look.
 Show rules can be applied to instances of text, many functions, and even the
