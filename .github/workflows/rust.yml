@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.4
+      with:
+        node-version: 20.x
     - uses: actions/checkout@v4
     - name: Build typst-docs
       run: cargo build --release --verbose --package typst-docs;
@@ -29,6 +33,7 @@ jobs:
         rm -rf tt/public/docs/assets
         cp -r assets tt/public/docs
         cd tt/static && node ./gen-contents.mjs
+        cd ..
         git remote set-url origin https://Subilan:${{ secrets.TOKEN }}@github.com/typstdocsinchinese/typstdocsinchinese.github.io
         git add *
         git commit -m 'update'
