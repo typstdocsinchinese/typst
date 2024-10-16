@@ -86,8 +86,8 @@ more about their syntax and usage.
 | 智能引用  | `['single' or "double"]`     | [`smartquote`]                  |
 | 符号简写  | `[~]`, `[---]`               | [符号]($category/symbols/sym)     |
 | 代码表达式 | `[#rect(width: 1cm)]`        | [脚本编写]($scripting/#expressions) |
-| 转义字符  | `[Tweet at us \#ad]`         | [见下文](#escapes)                 |
-| 注释    | `[/* block */]`, `[// line]` | [见下文](#comments)                |
+| 转义字符  | `[Tweet at us \#ad]`         | [见下文](#转义序列)                 |
+| 注释    | `[/* block */]`, `[// line]` | [见下文](#注释)                |
 
 <original>
 | Name             | Example                      | See                                  |
@@ -112,7 +112,7 @@ more about their syntax and usage.
 | Comment          | `[/* block */]`, `[// line]` | [Below](#comments)                   |
 </original>
 
-## math 模式 {#math}
+## math 模式
 
 math 模式是一种用来排版数学公式的特殊标记模式，可通过将等式用 `[$]` 包围来进入，markup 和 code
 模式中都可以这样用。如果 `[$]` 包围内容的开头和结尾都有至少一个空格，该公式会被排版到单独的块中，如果没有则为行内公式。math
@@ -143,8 +143,8 @@ syntax specific to math mode follows:
 | 文本     | `[$a "is natural"$]`    | [数学公式]($category/math)            |
 | 调用数学函数 | `[$floor(x)$]`          | [数学公式]($category/math)            |
 | 代码表达式  | `[$#rect(width: 1cm)$]` | [脚本编写]($scripting/#expressions)   |
-| 转义     | `[$x\^2$]`              | [见下文](#escapes)                   |
-| 注释     | `[$/* comment */$]`     | [见下文](#comments)                  |
+| 转义     | `[$x\^2$]`              | [见下文](#转义序列)                   |
+| 注释     | `[$/* comment */$]`     | [见下文](#注释)                  |
 
 <original>
 | Name                   | Example                 | See                                  |
@@ -167,7 +167,7 @@ syntax specific to math mode follows:
 | Comment                | `[$/* comment */$]`     | [Below](#comments)                   |
 </original>
 
-## code 模式 { #code }
+## code 模式
 
 在具体的代码块和表达式中，新写的表达式可以不用带 `#`。有许多句法元素是表达式专有的。下标列出了 code 模式中可用的所有语法：
 
@@ -222,56 +222,7 @@ a table listing all syntax that is available in code mode:
 | 引入（include）模块        | `{include "bar.typ"}`           | [脚本编写]($scripting/#modules)      |
 | 导入（import）模块         | `{import "bar.typ"}`            | [脚本编写]($scripting/#modules)      |
 | 从模块中导入项目             | `{import "bar.typ": a, b, c}`   | [脚本编写]($scripting/#modules)      |
-| 注释                   | `{/* block */}`, `{// line}`    | [见下文](#comments)                 |
-
-<original>
-| Name                     | Example                         | See                                   |
-|--------------------------|---------------------------------|---------------------------------------|
-| None                     | `{none}`                        | [`none`]                              |
-| Auto                     | `{auto}`                        | [`auto`]                              |
-| Boolean                  | `{false}`, `{true}`             | [`bool`]                              |
-| Integer                  | `{10}`, `{0xff}`                | [`int`]                               |
-| Floating-point number    | `{3.14}`, `{1e5}`               | [`float`]                             |
-| Length                   | `{2pt}`, `{3mm}`, `{1em}`, ..   | [`length`]                            |
-| Angle                    | `{90deg}`, `{1rad}`             | [`angle`]                             |
-| Fraction                 | `{2fr}`                         | [`fraction`]                          |
-| Ratio                    | `{50%}`                         | [`ratio`]                             |
-| String                   | `{"hello"}`                     | [`str`]                               |
-| Label                    | `{<intro>}`                     | [`label`]                             |
-| Math                     | `[$x^2$]`                       | [Math]($category/math)                |
-| Raw text                 | ``[`print(1)`]``                | [`raw`]                               |
-| Variable access          | `{x}`                           | [Scripting]($scripting/#blocks)       |
-| Code block               | `{{ let x = 1; x + 2 }}`        | [Scripting]($scripting/#blocks)       |
-| Content block            | `{[*Hello*]}`                   | [Scripting]($scripting/#blocks)       |
-| Parenthesized expression | `{(1 + 2)}`                     | [Scripting]($scripting/#blocks)       |
-| Array                    | `{(1, 2, 3)}`                   | [Array]($array)                       |
-| Dictionary               | `{(a: "hi", b: 2)}`             | [Dictionary]($dictionary)             |
-| Unary operator           | `{-x}`                          | [Scripting]($scripting/#operators)    |
-| Binary operator          | `{x + y}`                       | [Scripting]($scripting/#operators)    |
-| Assignment               | `{x = 1}`                       | [Scripting]($scripting/#operators)    |
-| Field access             | `{x.y}`                         | [Scripting]($scripting/#fields)       |
-| Method call              | `{x.flatten()}`                 | [Scripting]($scripting/#methods)      |
-| Function call            | `{min(x, y)}`                   | [Function]($function)                 |
-| Argument spreading       | `{min(..nums)}`                 | [Arguments]($arguments)               |
-| Unnamed function         | `{(x, y) => x + y}`             | [Function]($function)                 |
-| Let binding              | `{let x = 1}`                   | [Scripting]($scripting/#bindings)     |
-| Named function           | `{let f(x) = 2 * x}`            | [Function]($function)                 |
-| Set rule                 | `{set text(14pt)}`              | [Styling]($styling/#set-rules)        |
-| Set-if rule              | `{set text(..) if .. }`         | [Styling]($styling/#set-rules)        |
-| Show-set rule            | `{show heading: set block(..)}` | [Styling]($styling/#show-rules)       |
-| Show rule with function  | `{show raw: it => {..}}`        | [Styling]($styling/#show-rules)       |
-| Show-everything rule     | `{show: template}`              | [Styling]($styling/#show-rules)       |
-| Context expression       | `{context text.lang}`           | [Context]($context)                   |
-| Conditional              | `{if x == 1 {..} else {..}}`    | [Scripting]($scripting/#conditionals) |
-| For loop                 | `{for x in (1, 2, 3) {..}}`     | [Scripting]($scripting/#loops)        |
-| While loop               | `{while x < 10 {..}}`           | [Scripting]($scripting/#loops)        |
-| Loop control flow        | `{break, continue}`             | [Scripting]($scripting/#loops)        |
-| Return from function     | `{return x}`                    | [Function]($function)                 |
-| Include module           | `{include "bar.typ"}`           | [Scripting]($scripting/#modules)      |
-| Import module            | `{import "bar.typ"}`            | [Scripting]($scripting/#modules)      |
-| Import items from module | `{import "bar.typ": a, b, c}`   | [Scripting]($scripting/#modules)      |
-| Comment                  | `{/* block */}`, `{// line}`    | [Below](#comments)                    |
-</original>
+| 注释                   | `{/* block */}`, `{// line}`    | [见下文](#注释)                 |
 
 ## 注释
 
