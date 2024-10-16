@@ -450,7 +450,7 @@ that define reusable document styles. You've made it far and learned a lot. You
 can now use Typst to write your own documents and share them with others.
 </original>
 
-我们目前仍然是一个非常年轻的项目，期待着任何反馈。如果你有任何问题或建议，或者你发现了 bug，请在 Typst 的 [论坛]((https://forum.typst.app/))、[Discord](https://discord.gg/2uDybryKPe) 或者 [GitHub](https://github.com/typst/typst/)上告诉我们，或者你也可以通过 web app 中的反馈表进行反馈（可以在帮助菜单中找到）。
+我们目前仍然是一个非常年轻的项目，期待着任何反馈。如果你有任何问题或建议，或者你发现了 bug，请在 Typst 的 [论坛](https://forum.typst.app/))、[Discord](https://discord.gg/2uDybryKPe) 或者 [GitHub](https://github.com/typst/typst/)上告诉我们，或者你也可以通过 web app 中的反馈表进行反馈（可以在帮助菜单中找到）。
 
 <original>
 We are still a super young project and are looking for feedback. If you have any
