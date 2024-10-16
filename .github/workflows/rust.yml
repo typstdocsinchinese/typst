@@ -1,0 +1,35 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+  token: ${{ secrets.TOKEN }}
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build typst-docs
+      run: cargo build --release --verbose --package typst-docs;
+    - name: Build & write document data
+      run: ./target/release/typst-docs --base /docs > ./data.json
+    - name: Push to typstdocsinchinese.github.io
+      run: |
+        git config --global user.name typst-main
+        git clone https://github.com/typstdocsinchinese/typstdocsinchinese.github.io.git tt
+        cp data.json tt/static
+        rm -rf tt/public/docs/assets
+        cp -r assets tt/public/docs
+        cd tt/static && node ./gen-contents.mjs
+        git remote set-url origin https://Subilan:${{ secrets.TOKEN }}@github.com/typstdocsinchinese/typstdocsinchinese.github.io
+        git add *
+        git commit -m 'update'
+        git push origin main
