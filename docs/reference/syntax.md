@@ -89,29 +89,6 @@ more about their syntax and usage.
 | 转义字符  | `[Tweet at us \#ad]`         | [见下文](#转义序列)                 |
 | 注释    | `[/* block */]`, `[// line]` | [见下文](#注释)                |
 
-<original>
-| Name             | Example                      | See                                  |
-|------------------|------------------------------|--------------------------------------|
-| Paragraph break  | Blank line                   | [`parbreak`]                         |
-| Strong emphasis  | `[*strong*]`                 | [`strong`]                           |
-| Emphasis         | `[_emphasis_]`               | [`emph`]                             |
-| Raw text         | ``[`print(1)`]``             | [`raw`]                              |
-| Link             | `[https://typst.app/]`       | [`link`]                             |
-| Label            | `[<intro>]`                  | [`label`]                            |
-| Reference        | `[@intro]`                   | [`ref`]                              |
-| Heading          | `[= Heading]`                | [`heading`]                          |
-| Bullet list      | `[- item]`                   | [`list`]                             |
-| Numbered list    | `[+ item]`                   | [`enum`]                             |
-| Term list        | `[/ Term: description]`      | [`terms`]                            |
-| Math             | `[$x^2$]`                    | [Math]($category/math)               |
-| Line break       | `[\]`                        | [`linebreak`]                        |
-| Smart quote      | `['single' or "double"]`     | [`smartquote`]                       |
-| Symbol shorthand | `[~]`, `[---]`               | [Symbols]($category/symbols/sym)     |
-| Code expression  | `[#rect(width: 1cm)]`        | [Scripting]($scripting/#expressions) |
-| Character escape | `[Tweet at us \#ad]`         | [Below](#escapes)                    |
-| Comment          | `[/* block */]`, `[// line]` | [Below](#comments)                   |
-</original>
-
 ## math 模式
 
 math 模式是一种用来排版数学公式的特殊标记模式，可通过将等式用 `[$]` 包围来进入，markup 和 code
@@ -146,26 +123,6 @@ syntax specific to math mode follows:
 | 转义     | `[$x\^2$]`              | [见下文](#转义序列)                   |
 | 注释     | `[$/* comment */$]`     | [见下文](#注释)                  |
 
-<original>
-| Name                   | Example                 | See                                  |
-|------------------------|-------------------------|--------------------------------------|
-| Inline math            | `[$x^2$]`               | [Math]($category/math)               |
-| Block-level math       | `[$ x^2 $]`             | [Math]($category/math)               |
-| Bottom attachment      | `[$x_1$]`               | [`attach`]($category/math/attach)    |
-| Top attachment         | `[$x^2$]`               | [`attach`]($category/math/attach)    |
-| Fraction               | `[$1 + (a+b)/5$]`       | [`frac`]($math.frac)                 |
-| Line break             | `[$x \ y$]`             | [`linebreak`]                        |
-| Alignment point        | `[$x &= 2 \ &= 3$]`     | [Math]($category/math)               |
-| Variable access        | `[$#x$, $pi$]`          | [Math]($category/math)               |
-| Field access           | `[$arrow.r.long$]`      | [Scripting]($scripting/#fields)      |
-| Implied multiplication | `[$x y$]`               | [Math]($category/math)               |
-| Symbol shorthand       | `[$->$]`, `[$!=$]`      | [Symbols]($category/symbols/sym)     |
-| Text/string in math    | `[$a "is natural"$]`    | [Math]($category/math)               |
-| Math function call     | `[$floor(x)$]`          | [Math]($category/math)               |
-| Code expression        | `[$#rect(width: 1cm)$]` | [Scripting]($scripting/#expressions) |
-| Character escape       | `[$x\^2$]`              | [Below](#escapes)                    |
-| Comment                | `[$/* comment */$]`     | [Below](#comments)                   |
-</original>
 
 ## code 模式
 
