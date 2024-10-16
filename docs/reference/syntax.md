@@ -42,14 +42,6 @@ table:
 | Math   | 用 `[$..$]` 包围式子 | `[$-x$ is the opposite of $x$]` |
 | Markup | 用 `[[..]]` 包围内容 | `{let name = [*Typst!*]}`       |
 
-<original>
-| New mode | Syntax                          | Example                         |
-|----------|---------------------------------|---------------------------------|
-| Code     | Prefix the code with `#`        | `[Number: #(1 + 2)]`            |
-| Math     | Surround equation with `[$..$]` | `[$-x$ is the opposite of $x$]` |
-| Markup   | Surround markup with `[[..]]`   | `{let name = [*Typst!*]}`       |
-</original>
-
 用 `#` 进入 code 模式以后，只要没有切换回 markup 或者 math 模式，就不需要再使用任何井号。
 
 <original>
