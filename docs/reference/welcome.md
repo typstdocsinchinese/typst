@@ -7,7 +7,7 @@ description: |
 
 # 参考
 
-这里的参考文档，包含了对 Typst 所有的语法、概念、数据类型和函数的全面指导。如果你刚刚接触 Typst，我们建议你从 [tutorial] 开始，稍后根据需要再回来看参考。
+这里的参考文档，包含了对 Typst 所有的语法、概念、数据类型和函数的全面指导。如果你刚刚接触 Typst，我们建议你从[入门教程]($tutorial)开始，稍后根据需要再回来看参考。
 
 <original>
 This reference documentation is a comprehensive guide to all of Typst's syntax,
