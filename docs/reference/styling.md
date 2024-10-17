@@ -151,8 +151,6 @@ literal string or content block that should be directly substituted for the
 element. And apart from a function, the left-hand side of a show rule can also
 take a number of other _selectors_ that define what to apply the transformation
 to:
----
-译注：此处 right-hand side 不宜强调右值，因此直接翻译成右侧 right side。left-hand side 同理，理解为 left side
 </original>
 
 - **任意元素**： `{show: rest => ..}` \
