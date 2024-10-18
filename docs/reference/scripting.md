@@ -533,7 +533,7 @@ The following table lists all available unary and binary operators with effect,
 arity (unary, binary) and precedence level (higher binds stronger).
 </original>
 
-|  Operator  | Effect          | Arity | Precedence |
+|  运算符  | 效果          | 元数 | 优先级 |
 |:----------:|-----------------|:-----:|:----------:|
 |   `{-}`    | 取反              |  一元   |     7      |
 |   `{+}`    | 无作用（考虑对称性保留该符号） |  一元   |     7      |
