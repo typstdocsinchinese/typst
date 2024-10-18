@@ -4,13 +4,21 @@ description: |
 en_title: Context
 ---
 
-# Context
+# 上下文
+
+有时，我们需要根据在文档中所处的位置来创建元素，比如根据配置的文本语言来展示本地化的短语，或者更简单地，根据前文标题的个数来决定当前标题的标号。
+然而 Typst 中的代码并不能直接获取到它在文档中的位置。有些放在开头的代码最终会在文末生成内容。
+
 Sometimes, we want to create content that reacts to its location in the
 document. This could be a localized phrase that depends on the configured text
 language or something as simple as a heading number which prints the right
 value based on how many headings came before it. However, Typst code isn't
 directly aware of its location in the document. Some code at the beginning of
 the source text could yield content that ends up at the back of the document.
+
+要创建出能根据所处环境做出改变的内容，我们必须特地引导 Typst 这样做：把 `{context}` 关键字放在一个表达式的前面，从而表明它应当根据周围环境生成。
+正由于是根据环境生成的，上下文表达式本身会变得不可见，我们并不能在代码中直接访问它的值。
+准确地说，这是因为它依赖着上下文，导致它不存在唯一的结果，会在文档的不同位置发生变化。因此，每当需要获取这些上下文的数据时，必须将语句写在上下文表达式内部。
 
 To produce content that is reactive to its surroundings, we must thus
 specifically instruct Typst: We do this with the `{context}` keyword, which
@@ -21,12 +29,19 @@ contextual: There is no one correct result, there may be multiple results in
 different places of the document. For this reason, everything that depends on
 the contextual data must happen inside of the context expression.
 
+除了明确指定上下文表达式以外，上下文也可以在文档中那些位置可知的部分被隐式地创建：[show rules]($styling/#show-rules) 自动提供上下文[^2]，另外例如大纲中的标号也提供了
+用于计数的上下文。
+
 Aside from explicit context expressions, context is also established implicitly
 in some places that are also aware of their location in the document:
 [Show rules]($styling/#show-rules) provide context[^1] and numberings in the
 outline, for instance, also provide the proper context to resolve counters.
 
-## Style context
+## 样式上下文
+
+利用 set rules，我们可以修改文档中一小部分或者全文的样式属性，而如果没有已知的上下文，我们不可能访问到这些属性，因为它们在全文范围内会随时改变。
+上下文存在时，仅需当做元素字段进行访问，即可获取到它们。
+
 With set rules, we can adjust style properties for parts or the whole of our
 document. We cannot access these without a known context, as they may change
 throughout the course of the document. When context is available, we can
@@ -37,6 +52,8 @@ function.
 #set text(lang: "de")
 #context text.lang
 ```
+
+如之前所说，上下文表达式会反映出它所处的位置。在下面的例子中，我们创建了一个上下文表达式，将其存储在了 `value` 变量里，并调用了多次，每次调用都正确地反映了它所处位置的信息。
 
 As explained above, a context expression is reactive to the different
 environments it is placed into. In the example below, we create a single context
@@ -53,6 +70,9 @@ properly reacts to the current surroundings.
 #set text(lang: "fr")
 #value
 ```
+
+注意，在创建之时，`value` 就变成了不可见的[内容]($content)。它的值只会在它被放在某个地方的时候解析出来，因为只有在这时上下文才已知。
+上下文表达式体可能被取值任意次，这取决于它被放在了多少个不同的位置。
 
 Crucially, upon creation, `value` becomes opaque [content] that we cannot peek
 into. It can only be resolved when placed somewhere because only then the
