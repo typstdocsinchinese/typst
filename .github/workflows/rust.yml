@@ -27,6 +27,7 @@ jobs:
       run: ./target/release/typst-docs --base /docs > ./data.json
     - name: Push to typstdocsinchinese.github.io
       run: |
+        git config --global user.email runner@runner
         git config --global user.name typst-main
         git clone https://github.com/typstdocsinchinese/typstdocsinchinese.github.io.git tt
         cp data.json tt/static
