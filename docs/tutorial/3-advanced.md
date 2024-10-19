@@ -332,26 +332,43 @@ on another title, we can easily change it in one place.
 
 ## 添加分栏和标题
 
-很不幸，上面的论文看起来很像是一道铅墙。要解决这一点，我们需要向文档添加一些标题，然后将论文切换为两栏布局。[`columns`] 函数接受一个数字参数和一个内容参数，它将内容排布到指定数量的栏目里。由于我们想要让摘要之后的所有内容都排在两个栏目里，我们需要将这个 column 函数应用到整个文档。
+## Adding columns and headings { #columns-and-headings }
 
-<original>
+上面的论文看起来很像是一道铅墙。要解决这一点，我们需要向文档添加一些标题，然后将论文切换为两栏布局。幸运的是这很好实现：我们只需要在 `page` set rule 里加上 [`columns`] 参数。
+
 The paper above unfortunately looks like a wall of lead. To fix that, let's add
-some headings and switch our paper to a two-column layout. The [`columns`]
-function takes a number and content, and layouts the content into the specified
-number of columns. Since we want everything after the abstract to be in two
-columns, we need to apply the column function to our whole document.
-</original>
+some headings and switch our paper to a two-column layout. Fortunately, that's
+easy to do: We just need to amend our `page` set rule with the `columns`
+argument.
 
-与其将整篇文档包围在一个巨大的函数调用里，不如用一个控制“一切”的 show rule 来实现。要编写出这样一个 show rule，只需在 show 关键字后边直接加上冒号和函数。在这里我们把该函数的参数叫做 `rule`，当然你可以选择其他名字。这个函数可以对内容进行任何修改，在我们的例子中，它将内容传入到了一个 `columns` 函数中。
+在添加了 `{columns: 2}` 参数后，整个文档就被包在了两个栏目中。但是这同时也在影响着标题和作者概览。为了让它们保持跨越整个页面（译者注：即依然占整个页面的宽度，不分栏），可将其包围在 [`{place}`]($place) 函数调用中。place 函数接收两个位置参数：对齐方式和对齐内容。同时，借助具名参数 `{scope}` 可以设置这些项目应当相对于当前栏目还是相对于其父级元素（即整个页面）进行定位。另外还有一点可以进行配置：如果没有传入其它参数，`{place}` 会将其处理的内容移出文档流，并在不影响其它内容定位的情况下，将内容放置在其它内容之上（译者注：此处深入理解请参考 CSS 中的 `position: absolute` 布局定位方式）。
 
-<original>
-Instead of wrapping the whole document in a giant function call, we can use an
-"everything" show rule. To write such a show rule, put a colon directly behind
-the show keyword and then provide a function. This function is given the rest of
-the document as a parameter. We have called the parameter `rest` here, but you
-are free to choose any name. The function can then do anything with this
-content. In our case, it passes it on to the `columns` function.
-</original>
+By adding `{columns: 2}` to the argument list, we have wrapped the whole
+document in two columns. However, that would also affect the title and authors
+overview. To keep them spanning the whole page, we can wrap them in a function
+call to [`{place}`]($place). Place expects an alignment and the content it
+should place as positional arguments. Using the named `{scope}` argument, we can
+decide if the items should be placed relative to the current column or its
+parent (the page). There is one more thing to configure: If no other arguments
+are provided, `{place}` takes its content out of the flow of the document and
+positions it over the other content without affecting the layout of other
+content in its container:
+
+```example
+#place(
+  top + center,
+  rect(fill: black),
+)
+#lorem(30)
+```
+
+如果在这里没有用到 `{place}`，这个正方形会另起一行，但在这里它与之后的几行文字重叠了，这几行文字表现得如同该正方形不存在一般。要改变这种状态，我们可以传入 `{float: true}` 参数来确保定位到页面顶部或者底部的项目的空间不会被其它内容所占据。
+
+If we hadn't used `{place}` here, the square would be in its own line, but here
+it overlaps the few lines of text following it. Likewise, that text acts like as
+if there was no square. To change this behavior, we can pass the argument
+`{float: true}` to ensure that the space taken up by the placed item at the top
+or bottom of the page is not occupied by any other content.
 
 ```example:single
 >>> #let title = [
@@ -361,45 +378,50 @@ content. In our case, it passes it on to the `columns` function.
 >>>
 >>> #set text(font: "Libertinus Serif", 11pt)
 >>> #set par(justify: true)
->>> #set page(
->>>   "us-letter",
->>>   margin: auto,
->>>   header: align(
->>>     right + horizon,
->>>     title
->>>   ),
->>>   numbering: "1",
->>> )
 >>>
->>> #align(center, text(
->>>   17pt,
->>>   weight: "bold",
->>>   title,
->>> ))
->>>
->>> #grid(
->>>   columns: (1fr, 1fr),
->>>   align(center)[
->>>     Therese Tungsten \
->>>     Artos Institute \
->>>     #link("mailto:tung@artos.edu")
->>>   ],
->>>   align(center)[
->>>     Dr. John Doe \
->>>     Artos Institute \
->>>     #link("mailto:doe@artos.edu")
->>>   ]
->>> )
->>>
->>> #align(center)[
->>>   #set par(justify: false)
->>>   *Abstract* \
->>>   #lorem(80)
->>> ]
->>> #v(4mm)
-<<< ...
+#set page(
+>>> margin: auto,
+  paper: "us-letter",
+  header: align(
+    right + horizon,
+    title
+  ),
+  numbering: "1",
+  columns: 2,
+)
 
-#show: rest => columns(2, rest)
+#place(
+  top + center,
+  float: true,
+  scope: "parent",
+  clearance: 2em,
+)[
+>>>  #text(
+>>>    17pt,
+>>>    weight: "bold",
+>>>    title,
+>>>  )
+>>>
+>>>  #grid(
+>>>    columns: (1fr, 1fr),
+>>>    [
+>>>      Therese Tungsten \
+>>>      Artos Institute \
+>>>      #link("mailto:tung@artos.edu")
+>>>    ],
+>>>    [
+>>>      Dr. John Doe \
+>>>      Artos Institute \
+>>>      #link("mailto:doe@artos.edu")
+>>>    ]
+>>>  )
+<<<   ...
+
+  #par(justify: false)[
+    *Abstract* \
+    #lorem(80)
+  ]
+]
 
 = Introduction
 #lorem(300)
@@ -407,6 +429,15 @@ content. In our case, it passes it on to the `columns` function.
 = Related Work
 #lorem(200)
 ```
+
+在这个例子中，我们还用到了 `{place}` 函数的 `clearance` 参数在元素和正文之间加上空隙，而没有用到 [`{v}`]($v) 函数。部分显式的 `{align(center, ..)}` 调用也可以去掉，因为这些部分继承了定位语句中规定的居中布局。
+
+<original>
+In this example, we also used the `clearance` argument of the `{place}` function
+to provide the space between it and the body instead of using the [`{v}`]($v)
+function. We can also remove the explicit `{align(center, ..)}` calls around the
+various parts since they inherit the center alignment from the placement.
+</original>
 
 现在只有一件事情要做：为标题设置样式。我们需要将它们居中，并采用小型大写字母（small capitals）展示。由于 `heading` 函数并没有提供任何相关的功能，我们需要自行编写标题的 show rule。
 
@@ -432,6 +463,7 @@ a way to set any of that, we need to write our own heading show rule.
 >>>     title
 >>>   ),
 >>>   numbering: "1",
+>>>   columns: 2,
 >>> )
 #show heading: it => [
   #set align(center)
@@ -441,34 +473,37 @@ a way to set any of that, we need to write our own heading show rule.
 
 <<< ...
 >>>
->>> #align(center, text(
->>>   17pt,
->>>   weight: "bold",
->>>   title,
->>> ))
+>>> #place(
+>>>   top + center,
+>>>   float: true,
+>>>   scope: "parent",
+>>>   clearance: 2em,
+>>> )[
+>>>   #text(
+>>>     17pt,
+>>>     weight: "bold",
+>>>     title,
+>>>   )
 >>>
->>> #grid(
->>>   columns: (1fr, 1fr),
->>>   align(center)[
->>>     Therese Tungsten \
->>>     Artos Institute \
->>>     #link("mailto:tung@artos.edu")
->>>   ],
->>>   align(center)[
->>>     Dr. John Doe \
->>>     Artos Institute \
->>>     #link("mailto:doe@artos.edu")
+>>>   #grid(
+>>>     columns: (1fr, 1fr),
+>>>     [
+>>>       Therese Tungsten \
+>>>       Artos Institute \
+>>>       #link("mailto:tung@artos.edu")
+>>>     ],
+>>>     [
+>>>       Dr. John Doe \
+>>>       Artos Institute \
+>>>       #link("mailto:doe@artos.edu")
+>>>     ]
+>>>   )
+>>>
+>>>   #par(justify: false)[
+>>>     *Abstract* \
+>>>     #lorem(80)
 >>>   ]
->>> )
->>>
->>> #align(center)[
->>>   #set par(justify: false)
->>>   *Abstract* \
->>>   #lorem(80)
 >>> ]
->>>
->>> #v(4mm)
->>> #show: rest => columns(2, rest)
 >>>
 >>> = Introduction
 >>> #lorem(35)
@@ -516,6 +551,7 @@ differentiate between section and subsection headings:
 >>>     title
 >>>   ),
 >>>   numbering: "1",
+>>>   columns: 2,
 >>> )
 >>>
 #show heading.where(
@@ -535,34 +571,37 @@ differentiate between section and subsection headings:
   it.body + [.],
 )
 >>>
->>> #align(center, text(
->>>   17pt,
->>>   weight: "bold",
->>>   title,
->>> ))
+>>> #place(
+>>>   top + center,
+>>>   float: true,
+>>>   scope: "parent",
+>>>   clearance: 2em,
+>>> )[
+>>>   #text(
+>>>     17pt,
+>>>     weight: "bold",
+>>>     title,
+>>>   )
 >>>
->>> #grid(
->>>   columns: (1fr, 1fr),
->>>   align(center)[
->>>     Therese Tungsten \
->>>     Artos Institute \
->>>     #link("mailto:tung@artos.edu")
->>>   ],
->>>   align(center)[
->>>     Dr. John Doe \
->>>     Artos Institute \
->>>     #link("mailto:doe@artos.edu")
+>>>  #grid(
+>>>    columns: (1fr, 1fr),
+>>>    [
+>>>      Therese Tungsten \
+>>>      Artos Institute \
+>>>      #link("mailto:tung@artos.edu")
+>>>    ],
+>>>    [
+>>>      Dr. John Doe \
+>>>      Artos Institute \
+>>>      #link("mailto:doe@artos.edu")
+>>>    ]
+>>>  )
+>>>
+>>>   #par(justify: false)[
+>>>     *Abstract* \
+>>>     #lorem(80)
 >>>   ]
->>> )
->>>
->>> #align(center)[
->>>   #set par(justify: false)
->>>   *Abstract* \
->>>   #lorem(80)
 >>> ]
->>>
->>> #v(4mm)
->>> #show: rest => columns(2, rest)
 >>>
 >>> = Introduction
 >>> #lorem(35)

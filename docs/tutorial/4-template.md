@@ -60,11 +60,17 @@ You are #amazed[beautiful]!
 I am #amazed(color: purple)[amazed]!
 ```
 
-现在，向一个全局 show rule 中传入我们编写的函数，就可以使模板正常工作了。现在用我们写的 `amazed` 函数来试试。
+现在，模板可以通过将整个文档包围在一个像 `amazed` 这样的函数中来起作用，但是这种将全文包围在一个巨大的函数调用中是很臃肿的，我们可以用一个全局 show rule 来达到同样的效果，同时代码也更加简洁。这样的一个 show rule 的具体写法是，在 show 关键字后面跟上一个冒号，后面放上一个函数。这个函数的参数值就是文档的剩余内容，它可以任意处理这些内容。由于这里的 `amazed` 函数可传入单一的内容参数，我们直接将它的名字传给 show rule 即可：
 
 <original>
-Templates now work by using an "everything" show rule that applies the custom
-function to our whole document. Let's do that with our `amazed` function.
+Templates now work by wrapping our whole document in a custom function like
+`amazed`. But wrapping a whole document in a giant function call would be
+cumbersome! Instead, we can use an "everything" show rule to achieve the same
+with cleaner code. To write such a show rule, put a colon directly behind the
+show keyword and then provide a function. This function is given the rest of the
+document as a parameter. The function can then do anything with this content.
+Since the `amazed` function can be called with a single content argument, we can
+just pass it by name to the show rule. Let's try it:
 </original>
 
 ```example
@@ -78,11 +84,11 @@ negative thoughts or beliefs.
 In fact, I am amazing!
 ```
 
-这样，整个文档都会被传入到 `amazed` 函数中，这与将所有内容用函数包含是一样的效果。这个函数看起来并不是很有用，但如果我们与 set rules 和具名参数相结合，它也可以变得非常强力。
+这样，整个文档都会被传入到 `amazed` 函数中，这与将所有内容用函数包含是一样的效果。当然，这个函数看起来并不是很有用，但如果我们与 set rules 和具名参数相结合，它也可以变得非常强力。
 
 <original>
-Our whole document will now be passed to the `amazed` function, as if we
-wrapped it around it. This is not especially useful with this particular
+Our whole document will now be passed to the `amazed` function, as if we wrapped
+it around it. Of course, this is not especially useful with this particular
 function, but when combined with set rules and named arguments, it can be very
 powerful.
 </original>
@@ -129,6 +135,7 @@ previous chapter.
       right + horizon,
       title
     ),
+    columns: 2,
 <<<     ...
   )
   set par(justify: true)
@@ -161,7 +168,7 @@ previous chapter.
 >>>    )
 >>>  )
 
-  columns(2, doc)
+  doc
 }
 
 #show: doc => conf(
@@ -183,24 +190,31 @@ previous chapter.
 >>> #lorem(200)
 ```
 
-我们从上一章里复制粘贴了大部分的代码。唯一的两个区别是，这次我们把所有内容都包围在了 `conf` 函数中，并直接在 `doc` 参数上调用了分栏函数，因为它已经包含了文档的内容。此外，我们还用到了一个花括号包围的代码块而非内容块。通过这种方式，我们不再需要在每一个 rule 和函数调用前加 `#` 了，不过我们也不能再直接在里边写 markup 了。
+我们从上一章里复制粘贴了大部分的代码。唯一的两个区别是：
+1. 我们利用 everything show rule 把所有内容都包围在了 `conf` 函数中。该函数应用了数个 set rule 和 show rule，并在最后将传入它的内容输出。
+2. 我们还用到了一个花括号包围的代码块而非内容块。通过这种方式，我们不再需要在每一个 rule 和函数调用前加 `#` 了，但同时也不能再在里边直接写 markup 了。
 
 <original>
-We copy-pasted most of that code from the previous chapter. The only two
-differences are that we wrapped everything in the function `conf` and are
-calling the columns function directly on the `doc` argument as it already
-contains the content of the document. Moreover, we used a curly-braced code
-block instead of a content block. This way, we don't need to prefix all set
-rules and function calls with a `#`. In exchange, we cannot write markup
-directly into it anymore.
+We copy-pasted most of that code from the previous chapter. The two differences
+are this:
+1. We wrapped everything in the function `conf` using an everything show rule.
+   The function applies a few set and show rules and echoes the content it has
+   been passed at the end.
+2. Moreover, we used a curly-braced code block instead of a content block. This
+   way, we don't need to prefix all set rules and function calls with a `#`. In
+   exchange, we cannot write markup directly in the code block anymore.
 </original>
 
-另外注意这个标题是从哪里来的：我们先前将它放在了一个变量里。现在我们将所需标题放在了模板函数参数的第一个的位置，因此我们应该在调用模板函数的 show rule 里面填入它。
+另外注意这个标题是从哪里来的：我们先前将它放在了一个变量里。现在我们将它放在了模板函数参数的第一个位置。要做到这一点，我们向 everything show rule 传入了一个闭包（closure，在这里可以理解为一个没有名字且可以立即原地调用的函数）。之所以这样做是因为 `conf` 函数接收两个位置参数，即标题（title）和内容体（body），但是 show rule 只会传入内容体。因此我们定义了一个新的函数，从而既设置了论文标题，又用到了 show rule 所提供的单一参数。
 
 <original>
 Also note where the title comes from: We previously had it inside of a variable.
-Now, we are receiving it as the first parameter of the template function.
-Thus, we must specify it in the show rule where we call the template.
+Now, we are receiving it as the first parameter of the template function. To do
+so, we passed a closure (that's a function without a name that is used right
+away) to the everything show rule. We did that because the `conf` function
+expects two positional arguments, the title and the body, but the show rule will
+only pass the body. Therefore, we add a new function definition that allows us
+to set a paper title and use the single parameter from the show rule.
 </original>
 
 ## 带有具名参数的模板
@@ -291,6 +305,7 @@ The resulting template function looks like this:
   doc,
 ) = {
   // Set and show rules from before.
+>>> #set page(columns: 2)
 <<<   ...
 
   set align(center)
@@ -314,7 +329,7 @@ The resulting template function looks like this:
   ]
 
   set align(left)
-  columns(2, doc)
+  doc
 }
 ```
 
@@ -329,8 +344,18 @@ your template is easily reused. Create a new text file in the file panel by
 clicking the plus button and name it `conf.typ`. Move the `conf` function
 definition inside of that new file. Now you can access it from your main file by
 adding an import before the show rule. Specify the path of the file between the
-`{import}` keyword and a colon, then name the function that you
-want to import.
+`{import}` keyword and a colon, then name the function that you want to import.
+</original>
+
+你还可以用函数上的 [`.with`]($function.with) 方法来更优雅地应用模板，它提前填充了所有具名参数。通过这种方式就不用再去写闭包，也不再需要将内容参数放到模板参数列表的最后了。[Typst Universe]($universe) 上的函数与这种风格的函数调用是兼容的。
+
+<original>
+Another thing that you can do to make applying templates just a bit more elegant
+is to use the [`.with`]($function.with) method on functions to pre-populate all
+the named arguments. This way, you can avoid spelling out a closure and
+appending the content argument at the bottom of your template list. Templates on
+[Typst Universe]($universe) are designed to work with this style of function
+call.
 </original>
 
 ```example:single
@@ -350,6 +375,7 @@ want to import.
 >>>      title
 >>>    ),
 >>>    numbering: "1",
+>>>    columns: 2,
 >>>  )
 >>>
 >>>  show heading.where(
@@ -374,30 +400,34 @@ want to import.
 >>>    )
 >>>  )
 >>>
->>>  set align(center)
->>>  text(17pt, title)
->>>
->>>  let count = calc.min(authors.len(), 3)
->>>  grid(
->>>    columns: (1fr,) * count,
->>>    row-gutter: 24pt,
->>>    ..authors.map(author => [
->>>      #author.name \
->>>      #author.affiliation \
->>>      #link("mailto:" + author.email)
->>>    ]),
+>>>  place(
+>>>    top,
+>>>    float: true,
+>>>    scope: "parent",
+>>>    clearance: 2em,
+>>>    {
+>>>      set align(center)
+>>>      text(17pt, title)
+>>>      let count = calc.min(authors.len(), 3)
+>>>      grid(
+>>>        columns: (1fr,) * count,
+>>>        row-gutter: 24pt,
+>>>        ..authors.map(author => [
+>>>          #author.name \
+>>>          #author.affiliation \
+>>>          #link("mailto:" + author.email)
+>>>        ]),
+>>>      )
+>>>      par(justify: false)[
+>>>        *Abstract* \
+>>>        #abstract
+>>>      ]
+>>>    },
 >>>  )
->>>
->>>  par(justify: false)[
->>>    *Abstract* \
->>>    #abstract
->>>  ]
->>>
->>>  set align(left)
->>>  columns(2, doc)
+>>>  doc
 >>>}
 <<< #import "conf.typ": conf
-#show: doc => conf(
+#show: conf.with(
   title: [
     Towards Improved Modelling
   ],
@@ -414,7 +444,6 @@ want to import.
     ),
   ),
   abstract: lorem(80),
-  doc,
 )
 
 = Introduction

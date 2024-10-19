@@ -26,11 +26,13 @@ pub struct Html {
     #[serde(skip)]
     md: String,
     #[serde(skip)]
-    description: Option<EcoString>,
-    #[serde(skip)]
     outline: Vec<OutlineItem>,
     #[serde(skip)]
     en_title: Option<EcoString>,
+    #[serde(skip)]
+    title: Option<EcoString>,
+    #[serde(skip)]
+    description: Option<EcoString>,
 }
 
 impl Html {
@@ -39,8 +41,9 @@ impl Html {
         Self {
             md: String::new(),
             raw,
-            description: None,
             outline: vec![],
+            title: None,
+            description: None,
             en_title: None
         }
     }
@@ -51,11 +54,13 @@ impl Html {
         let mut text = md;
         let mut description = None;
         let mut en_title = None;
+        let mut title = None;
         let document = YamlFrontMatter::parse::<Metadata>(md);
         if let Ok(document) = &document {
             text = &document.content;
-            description = Some(document.metadata.description.clone());
             en_title = Some(document.metadata.en_title.clone().unwrap_or("None".into()));
+            title = document.metadata.title.clone();
+            description = document.metadata.description.clone();
         }
 
         let options = md::Options::ENABLE_TABLES
@@ -102,9 +107,10 @@ impl Html {
         Html {
             md: text.into(),
             raw,
-            description,
             outline: handler.outline,
             en_title
+            title,
+            description,
         }
     }
 
@@ -118,21 +124,23 @@ impl Html {
         &self.md
     }
 
+    /// The outline of the HTML.
+    pub fn outline(&self) -> Vec<OutlineItem> {
+        self.outline.clone()
+    }
+
     /// The title of the HTML.
     ///
     /// Returns `None` if the HTML doesn't start with an `h1` tag.
     pub fn title(&self) -> Option<&str> {
-        let mut s = Scanner::new(&self.raw);
-        s.eat_if("<h1").then(|| {
-            s.eat_until('>');
-            s.eat_if('>');
-            s.eat_until("</h1>")
+        self.title.as_deref().or_else(|| {
+            let mut s = Scanner::new(&self.raw);
+            s.eat_if("<h1").then(|| {
+                s.eat_until('>');
+                s.eat_if('>');
+                s.eat_until("</h1>")
+            })
         })
-    }
-
-    /// The outline of the HTML.
-    pub fn outline(&self) -> Vec<OutlineItem> {
-        self.outline.clone()
     }
 
     /// The description from the front matter.
@@ -154,8 +162,9 @@ impl Debug for Html {
 /// Front matter metadata.
 #[derive(Deserialize)]
 struct Metadata {
-    description: EcoString,
     en_title: Option<EcoString>
+    title: Option<EcoString>,
+    description: Option<EcoString>,
 }
 
 struct Handler<'a> {
@@ -438,7 +447,7 @@ fn code_block(resolver: &dyn Resolver, lang: &str, text: &str) -> Html {
         document.pages.truncate(1);
     }
 
-    let hash = typst::utils::hash128(text);
+    let hash = typst::utils::hash128(&(lang, text));
     resolver.example(hash, highlighted, &document)
 }
 
