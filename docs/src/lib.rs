@@ -122,7 +122,7 @@ fn md_page(resolver: &dyn Resolver, parent: &str, md: &str) -> PageModel {
     let title = html.title().expect("chapter lacks a title");
     let en_title = html.en_title().unwrap();
     PageModel {
-        route: eco_format!("{parent}{}/", urlify(if en_title != "None" { en_title } else { title.clone() })),
+        route: eco_format!("{parent}{}/", urlify(&(if en_title != "None" { en_title } else { title.clone() }))),
         title: title.into(),
         description: html.description().expect("chapter lacks a description"),
         part: None,

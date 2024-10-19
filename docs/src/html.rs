@@ -108,7 +108,7 @@ impl Html {
             md: text.into(),
             raw,
             outline: handler.outline,
-            en_title
+            en_title,
             title,
             description,
         }
@@ -162,7 +162,7 @@ impl Debug for Html {
 /// Front matter metadata.
 #[derive(Deserialize)]
 struct Metadata {
-    en_title: Option<EcoString>
+    en_title: Option<EcoString>,
     title: Option<EcoString>,
     description: Option<EcoString>,
 }
