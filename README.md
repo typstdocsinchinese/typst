@@ -136,4 +136,14 @@ git merge upstream/main
 
 整个流程大致耗时五分钟左右。因此，当你在本项目中进行了翻译上的修改后，静候五分钟即可在网站上看到更新后的内容。偶尔会存在缓存，可用 Ctrl+Shift+R（chrome）硬性刷新。
 
+## 对 `typst-docs` 的部分修改
 
+此处记录了本项目中对 `typst-docs` 的部分修改，其目的是更好地兼容翻译后的文档。除了这里列出的修改以外，其余的部分应当与上游仓库保持一致。
+
+|        所属文件        |              修改对象               | 修改类型(Mod/Add) |                   目的                   |
+|:------------------:|:-------------------------------:|:-------------:|:--------------------------------------:|
+| `docs/src/html.rs` |        `pub struct Html`        |       M       |      添加 `en_title` frontmatter 支持      |
+|                    |   `impl Html` > `pub fn new`    |       M       |                                        |
+|                    | `impl Html` > `pub fn markdown` |       M       |                                        |
+|                    | `impl Html` > `pub fn en_title` |       A       |                                        |
+| `docs/src/lib.rs`  |          `fn md_page`           |       M       | 将 `en_title` 应用到 `urlify` 中来保持 URL 一致性 |

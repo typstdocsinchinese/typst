@@ -41,3 +41,7 @@
 > ```
 >
 > 为了文档的正常展示，请严格按照上面示例的格式进行编辑。
+
+此外，如果从头翻译某个 Markdown 文件，请**务必**在文档开头的 frontmatter 里加上 `en_title` 属性来确保页面被正确 route。该属性的值为原文的 H1 标题内容，例如 `# Styling` 开头，那么就是 `en_title: Styling`（区分大小写）。可参考已经翻译过的文件。
+
+![](./image/en_title.png)
