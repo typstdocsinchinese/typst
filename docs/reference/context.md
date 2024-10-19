@@ -33,7 +33,7 @@ different places of the document. For this reason, everything that depends on
 the contextual data must happen inside of the context expression.
 </original>
 
-除了明确指定上下文表达式以外，上下文也可以在文档中那些位置可知的部分被隐式地创建：[show rules]($styling/#show-rules) 自动提供上下文[^2]，另外例如大纲中的标号也提供了
+除了明确指定上下文表达式以外，上下文也可以在文档中那些位置可知的部分被隐式地创建：[show rules]($styling/#show-rules) 自动提供上下文[^1]，另外例如大纲中的标号也提供了
 用于计数的上下文。
 
 <original>
