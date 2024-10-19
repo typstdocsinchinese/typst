@@ -295,7 +295,7 @@ the effect of `{c.update(2)}` while the second `{c.display()}` accesses the inne
 
 ## 编译器迭代
 
-为了实现上下文的交互，Typst 编译器会将你的文档处理多次。比如，为了解析对 `locate` 的调用，Typst 先提供了一个占位的位置（译者注：只用作占位，不准确）进去，然后再去处理你文档的布局，最后再从最终的布局获取到确切的位置填进去。同样的方法也用在解析计数器（counters）、状态（states）和查询（queries）上面。在某些情况下，Typst 甚至还需要迭代超过两次才能解析所有东西。尽管这可能是必要的，这还可能是误用上下文函数的标志（比如滥用 [state]($state/#caution)）。如果 Typst 尝试五次都无法将所有东西解析出来，就会停止，并输出警告 "layout did not converge within 5
+为了实现上下文的交互，Typst 编译器会将你的文档处理多次。比如，为了解析对 `locate` 的调用，Typst 先提供了一个占位的位置（译者注：只用作占位，不准确）进去，然后再去处理你文档的布局，最后再从最终的布局获取到确切的位置填进去。同样的方法也用在解析计数器（counters）、状态（states）和查询（queries）上面。在某些情况下，Typst 甚至还需要迭代超过两次才能解析所有东西。尽管这可能是必要的，这还可能是误用上下文函数或者[状态]($state/#caution)的标志。如果 Typst 尝试五次都无法将所有东西解析出来，就会停止，并输出警告 "layout did not converge within 5
 attempts."（经过五次尝试后仍然无法集中内容）。
 
 <original>
