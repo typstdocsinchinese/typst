@@ -332,17 +332,18 @@ on another title, we can easily change it in one place.
 
 ## 添加分栏和标题
 
-## Adding columns and headings { #columns-and-headings }
-
 上面的论文看起来很像是一道铅墙。要解决这一点，我们需要向文档添加一些标题，然后将论文切换为两栏布局。幸运的是这很好实现：我们只需要在 `page` set rule 里加上 [`columns`] 参数。
 
+<original>
 The paper above unfortunately looks like a wall of lead. To fix that, let's add
 some headings and switch our paper to a two-column layout. Fortunately, that's
 easy to do: We just need to amend our `page` set rule with the `columns`
 argument.
+</original>
 
 在添加了 `{columns: 2}` 参数后，整个文档就被包在了两个栏目中。但是这同时也在影响着标题和作者概览。为了让它们保持跨越整个页面（译者注：即依然占整个页面的宽度，不分栏），可将其包围在 [`{place}`]($place) 函数调用中。place 函数接收两个位置参数：对齐方式和对齐内容。同时，借助具名参数 `{scope}` 可以设置这些项目应当相对于当前栏目还是相对于其父级元素（即整个页面）进行定位。另外还有一点可以进行配置：如果没有传入其它参数，`{place}` 会将其处理的内容移出文档流，并在不影响其它内容定位的情况下，将内容放置在其它内容之上（译者注：此处深入理解请参考 CSS 中的 `position: absolute` 布局定位方式）。
 
+<original>
 By adding `{columns: 2}` to the argument list, we have wrapped the whole
 document in two columns. However, that would also affect the title and authors
 overview. To keep them spanning the whole page, we can wrap them in a function
@@ -353,6 +354,7 @@ parent (the page). There is one more thing to configure: If no other arguments
 are provided, `{place}` takes its content out of the flow of the document and
 positions it over the other content without affecting the layout of other
 content in its container:
+</original>
 
 ```example
 #place(
@@ -364,11 +366,13 @@ content in its container:
 
 如果在这里没有用到 `{place}`，这个正方形会另起一行，但在这里它与之后的几行文字重叠了，这几行文字表现得如同该正方形不存在一般。要改变这种状态，我们可以传入 `{float: true}` 参数来确保定位到页面顶部或者底部的项目的空间不会被其它内容所占据。
 
+<original>
 If we hadn't used `{place}` here, the square would be in its own line, but here
 it overlaps the few lines of text following it. Likewise, that text acts like as
 if there was no square. To change this behavior, we can pass the argument
 `{float: true}` to ensure that the space taken up by the placed item at the top
 or bottom of the page is not occupied by any other content.
+</original>
 
 ```example:single
 >>> #let title = [
