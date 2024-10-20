@@ -99,7 +99,7 @@ syntax specific to math mode follows:
 | 名称     | 示例                      | 参见                                |
 |--------|-------------------------|-----------------------------------|
 | 行内公式   | `[$x^2$]`               | [数学公式]($category/math)            |
-| 块级公式   | `[$ x^2 $]`             | [数学公式]($category/math)            |
+| 行间公式   | `[$ x^2 $]`             | [数学公式]($category/math)            |
 | 下标     | `[$x_1$]`               | [`attach`]($category/math/attach) |
 | 上标     | `[$x^2$]`               | [`attach`]($category/math/attach) |
 | 分式     | `[$1 + (a+b)/5$]`       | [`frac`]($math.frac)              |
