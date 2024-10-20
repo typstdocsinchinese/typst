@@ -446,7 +446,7 @@ for a list of all available symbols.
 
 ## 回顾
 
-现在你已经知道如何用 Typst 编写一个基本的文档了。在本章中，我们了解了如何去用斜体强调文本、编写列表、插入图片、对齐内容以及排版数学表达式，还了解了 Typst 中函数的内容。除了图片，Typst 中有很多其它类型的内容可供你插入到文档中，例如[表格]($table)、[图形]($category/visualize)和[代码块]($raw)。你可以研读 [reference] 来了解更多特性。
+现在你已经知道如何用 Typst 编写一个基本的文档了。在本章中，我们了解了如何去用斜体强调文本、编写列表、插入图片、对齐内容以及排版数学表达式，还了解了 Typst 中函数的内容。除了图片，Typst 中有很多其它类型的内容可供你插入到文档中，例如[表格]($table)、[图形]($category/visualize)和[代码块]($raw)。你可以研读 [参考]($reference) 来了解更多特性。
 
 <original>
 You have now seen how to write a basic document in Typst. You learned how to
