@@ -494,7 +494,7 @@ following example:
 
 ## 包
 
-为了在不同的项目中复用所构建的块，你可以创建并导入 Typst _包_。包的导入包括命名空间、名称和版本三个信息。
+为了在不同的项目中复用所构建的块，你可以创建并导入 Typst _包_。包的导入语句包括命名空间、名称和版本三个信息。
 
 <original>
 To reuse building blocks across projects, you can also create and import Typst
@@ -508,7 +508,7 @@ and a version.
 #add(2, 7)
 ```
 
-`preview` 这一命名空间中包含了社区中共享的各种包，你可以在 [Typst Universe]($universe) 上找到可用的社区包。
+上面的 `preview` 命名空间中包含了社区中共享的各种包。你可以在 [Typst Universe]($universe) 上找到现有的社区包。
 
 <original>
 The `preview` namespace contains packages shared by the community. You can find
@@ -526,7 +526,7 @@ packages. For more details on this, see the
 
 ## 运算符
 
-下表列出了所有可用的一元和二元运算符以及它们的作用、操作元数和优先级（越高越优先）。
+下表列出了所有可用的一元和二元运算符以及它们的作用效果、操作元数和优先级（越高越优先）。
 
 <original>
 The following table lists all available unary and binary operators with effect,
