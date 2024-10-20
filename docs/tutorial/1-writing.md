@@ -424,7 +424,7 @@ used for sets. The [math section of the reference]($category/math) provides a
 complete list of all functions that math mode makes available.
 </original>
 
-还有一件事：许多符号有不同的变种，比如箭头。你可以通过在这一符号的名称后面加上点（`.`）和修饰名来选择一个变种：
+另外，许多符号有不同的变种，比如箭头。你可以通过在这一符号的名称后面加上点（`.`）和修饰名来选择一个变种：
 
 <original>
 One more thing: Many symbols, such as the arrow, have a lot of variants. You can
