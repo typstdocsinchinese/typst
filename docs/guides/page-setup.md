@@ -108,7 +108,7 @@ This page is a square.
 
 ### 更改页边距
 
-边距的设置是一个好排版的重要组成部分：[排印专家认为长度大致在 45 到 75 个英文字符之间的段落最清晰易读](http://webtypography.net/2.1.2)，而边距和[分栏](添加分栏)可用于调整一行的宽度。默认情况下，Typst 会按照比例，相对于文档页面大小来设置边距。如需自定边距的值，你需要在[`{page}`]($page) set rule 里用到 [`margin`]($page.margin) 参数。
+边距的设置是一个好排版的重要组成部分：[排印专家认为长度大致在 45 到 75 个英文字符之间的段落最清晰易读](http://webtypography.net/2.1.2)，而边距和[分栏](#添加分栏)可用于调整一行的宽度。默认情况下，Typst 会按照比例，相对于文档页面大小来设置边距。如需自定边距的值，你需要在[`{page}`]($page) set rule 里用到 [`margin`]($page.margin) 参数。
 
 <original>
 Margins are a vital ingredient for good typography:
