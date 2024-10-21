@@ -157,7 +157,7 @@ remaining margins to a common size, you can use the `rest` key. For example,
 inches and the remaining margins to one inch.
 </original>
 
-### 为奇、偶页面设置不同的边距
+### 为奇偶页面设置不同的边距
 
 有时你需要为奇偶页面设置不同的横向边距，例如你可能会想在靠近书脊的地方而不是外部留下更多的边距空白。Typst 在页面变量中保存了页面是在左侧还是在右侧的相关信息，所以你可以利用这些信息，并设置边距字典的 `inside` 和 `outside` 键来控制边距。`inside` 代表的是靠近书脊的部分边距，`outside` 则是靠近书的外边缘部分边距。
 
