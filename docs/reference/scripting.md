@@ -304,8 +304,7 @@ For loops can iterate over a variety of collections:
 
 - `{for letter in "abc" {..}}` \
   遍历[字符串]($str)的每个字符。严格来说，它是在遍历字符串的字素组合（grapheme clusters）。
-  多数情况下，一个字素组合就是一个 codepoint，不过也可能包含多个，
-  例如旗帜的 emoji（译者注：旗帜的 emoji 可以看成是普通旗帜的 codepoint 与对应国家代号的 codepoint 的组合）。
+  多数情况下，一个字素组合就是一个 codepoint，不过也可能包含多个，例如旗帜的 emoji（译者注：旗帜的 emoji 可以看成是普通旗帜的 codepoint 与对应国家代号的 codepoint 的组合）。
 
 <original>
 - `{for letter in "abc" {..}}` \
@@ -316,8 +315,8 @@ For loops can iterate over a variety of collections:
 </original>
 
 - `{for byte in bytes("😀") {..}}` \
-  遍历所有[字节]($bytes)。所谓字节，可从[字符串]($str)转换而来，也可以通过读取文件（不进行编码）获得。
-  这里的字节是一个介于 `{0}` 和 `{255}` 之间的[整数]($int)。
+  遍历所有[字节]($bytes)。这里所说的字节可从[字符串]($str)转换而来，也可以通过读取文件（不进行编码）获得。
+  所谓字节，就是一个介于 `{0}` 和 `{255}` 之间的[整数]($int)。
 
 <original>
 - `{for byte in bytes("😀") {..}}` \
@@ -398,7 +397,7 @@ The value in question can be either:
 
 ## 方法
 
-_方法调用_ 是调用某种数据类型上专有的函数的便捷方法。例如，我们可以通过下面两种等价的方式调用 [`str.len`]($str.len) 函数：
+_方法调用_ 是指那些只存在于数据类型上的函数的简单调用写法。例如，我们可以通过下面两种等价的方式调用 [`str.len`]($str.len) 函数：
 
 <original>
 A _method call_ is a convenient way to call a function that is scoped to a
@@ -411,8 +410,9 @@ the following two equivalent ways:
 #"abc".len()
 ```
 
-方法调用的写法是 `{value.method(..args)}`，等价的完整函数调用写法是 `{type(value).method(value, ..args)}`
-。每种数据类型的文档中都列出了它们所带有的函数。方法是不能自行定义的。
+译者注：严格来说，这些方法存在于数据类型对象上（此处是 [`str`]($str)）。这里所举的例子是在说明当你需要用到这些函数的时候，不一定非要写出 str，而可以直接在这种类型的值上进行调用。
+
+方法调用的写法是 `{value.method(..args)}`，等价的完整函数调用写法是 `{type(value).method(value, ..args)}`。每种数据类型的文档中都列出了它们所带有的函数。方法是不能自行定义的。
 
 <original>
 The structure of a method call is `{value.method(..args)}` and its equivalent
@@ -434,9 +434,8 @@ methods.
 #str.len("abc")
 ```
 
-有一些函数会修改调用它们时所指的目标，这些函数 _必须_ 以方法的形式被调用。某些情况下，如果一个方法调用只是为了它的副作用（side
-effect），其返回值应当被忽略，不应参与后续的叠加。
-舍弃一个值的通用方法是这样一个 let 绑定：`{let _ = array.remove(1)}`
+有一些函数调用后会修改它们的载体，这些函数 _必须_ 以方法的形式被调用。如果一个方法调用只是为了它的副作用（side
+effect），其返回值应当被忽略，不应参与后续的叠加。舍弃一个值的通用方法是这样一个 let 绑定：`{let _ = array.remove(1)}`
 
 <original>
 There are a few special functions that modify the value they are called on (e.g.
