@@ -78,8 +78,8 @@ more about their syntax and usage.
 | 智能引用  | `['single' or "double"]`     | [`smartquote`]                  |
 | 符号简写  | `[~]`, `[---]`               | [符号]($category/symbols/sym)     |
 | 代码表达式 | `[#rect(width: 1cm)]`        | [脚本编写]($scripting/#expressions) |
-| 转义字符  | `[Tweet at us \#ad]`         | [见下文](#转义序列)                 |
-| 注释    | `[/* block */]`, `[// line]` | [见下文](#注释)                |
+| 转义字符  | `[Tweet at us \#ad]`         | [见下文](#转义序列)                    |
+| 注释    | `[/* block */]`, `[// line]` | [见下文](#注释)                      |
 
 ## math 模式
 
@@ -112,9 +112,8 @@ syntax specific to math mode follows:
 | 文本     | `[$a "is natural"$]`    | [数学公式]($category/math)            |
 | 调用数学函数 | `[$floor(x)$]`          | [数学公式]($category/math)            |
 | 代码表达式  | `[$#rect(width: 1cm)$]` | [脚本编写]($scripting/#expressions)   |
-| 转义     | `[$x\^2$]`              | [见下文](#转义序列)                   |
-| 注释     | `[$/* comment */$]`     | [见下文](#注释)                  |
-
+| 转义     | `[$x\^2$]`              | [见下文](#转义序列)                      |
+| 注释     | `[$/* comment */$]`     | [见下文](#注释)                        |
 
 ## code 模式
 
@@ -171,7 +170,7 @@ a table listing all syntax that is available in code mode:
 | 引入（include）模块        | `{include "bar.typ"}`           | [脚本编写]($scripting/#modules)      |
 | 导入（import）模块         | `{import "bar.typ"}`            | [脚本编写]($scripting/#modules)      |
 | 从模块中导入项目             | `{import "bar.typ": a, b, c}`   | [脚本编写]($scripting/#modules)      |
-| 注释                   | `{/* block */}`, `{// line}`    | [见下文](#注释)                 |
+| 注释                   | `{/* block */}`, `{// line}`    | [见下文](#注释)                       |
 
 ## 注释
 
@@ -208,7 +207,8 @@ Our study design is as follows:
 
 ## 转义序列
 
-转义序列用于在 Typst 插入那些难以输入或者具有特殊含义的字符。要转义一个字符，在它前面加上一个反斜杠 `\`。如需插入 Unicode codepoint，可用十六进制转义序列实现：`[\u{1f600}]`。这种转义序列写法在[字符串]($str)里同样适用。
+转义序列用于在 Typst 插入那些难以输入或者具有特殊含义的字符。要转义一个字符，在它前面加上一个反斜杠 `\`。如需插入 Unicode
+codepoint，可用十六进制转义序列实现：`[\u{1f600}]`。这种转义序列写法在[字符串]($str)里同样适用。
 
 <original>
 Escape sequences are used to insert special characters that are hard to type or
@@ -286,7 +286,8 @@ to each Typst file in the file panel).
 
 ### 路径与包
 
-包只能加载存在于它自身目录中的文件。在包中，绝对路径指向的是包的根目录，而不是项目的根目录。因此，它们不能直接加载项目目录里的文件。如果包需要项目中的资源（例如 logo 图片），则必须传入已经加载的图片，例如作为具名参数 `{logo: image("mylogo.svg")}`。你仍然可以在包中用 set rule 自定义图片的外观。
+包只能加载存在于它自身目录中的文件。在包中，绝对路径指向的是包的根目录，而不是项目的根目录。因此，它们不能直接加载项目目录里的文件。如果包需要项目中的资源（例如
+logo 图片），则必须传入已经加载的图片，例如作为具名参数 `{logo: image("mylogo.svg")}`。你仍然可以在包中用 set rule 自定义图片的外观。
 
 <original>
 A package can only load files from its own directory. Within it, absolute paths
@@ -298,7 +299,8 @@ you can then still customize the image's appearance with a set rule within the
 package.
 </original>
 
-将来，路径可能会成为[一个独立于字符串的数据类型](https://github.com/typst/typst/issues/971)，这样它们就可以保留构造之时的各种信息，资源就可以在不同的根目录中被加载。
+将来，路径可能会成为[一个独立于字符串的数据类型](https://github.com/typst/typst/issues/971)
+，这样它们就可以保留构造之时的各种信息，资源就可以在不同的根目录中被加载。
 
 <original>
 In the future, paths might become a
