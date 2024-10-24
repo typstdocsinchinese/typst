@@ -1,31 +1,45 @@
 ---
+en_title: Table guide
 description: |
   Not sure how to change table strokes? Need to rotate a table? This guide
   explains all you need to know about tables in Typst.
 ---
 
-# Table guide
+# 制表指南
+
+表格是一种向读者展示数据的不错方式，具有可读性高、显示整齐紧凑的优点。表格不仅是用来展示数值的，还可以用来展示调查结果、任务计划以及日程安排等。正因为表格用途十分广泛，并不存在一个最完美的展示方式。不如先考虑一下你想要强调哪些数据以及文档的顶层设计，还有如何让你的表格带给读者好的体验。
+
+<original>
 Tables are a great way to present data to your readers in an easily readable,
 compact, and organized manner. They are not only used for numerical values, but
 also survey responses, task planning, schedules, and more. Because of this wide
 set of possible applications, there is no single best way to lay out a table.
 Instead, think about the data you want to highlight, your document's overarching
 design, and ultimately how your table can best serve your readers.
+</original>
 
+在你制表时，Typst 能帮上忙的部分包括自动化的样式应用和从其他应用导入数据等。本指南将带你过一遍那些你可能在向文档加表中常常会遇到的一些问题。你可以考虑是否跳读到对你来说最相关的部分——本指南是可以不按顺序读的。
+
+<original>
 Typst can help you with your tables by automating styling, importing data from
 other applications, and more! This guide takes you through a few of the most
 common questions you may have when adding a table to your document with Typst.
 Feel free to skip to the section most relevant to you – we designed this guide
 to be read out of order.
+</original>
 
+如果你想要看看表格实现的细节，可以[查阅相关参考文档]($table)。以及，如果你正在考虑目录（table of contents）而不是一般的表格，请转到 [`outline` 函数]($outline)页面。（译者注：由于目录的英文中含有 table，本句话原本的目的是指引那些误解了本页标题的读者到正确的页面）
+
+<original>
 If you want to look up a detail of how tables work, you should also [check out
 their reference page]($table). And if you are looking for a table of contents
 rather than a normal table, the reference page of the [`outline`
 function]($outline) is the right place to learn more.
+</original>
 
 ## How to create a basic table? { #basic-tables }
 In order to create a table in Typst, use the [`table` function]($table). For a
-basic table, you need to tell the table function two things:
+basic table, you need to tell the table function two things:、
 
 - The number of columns
 - The content for each of the table cells
