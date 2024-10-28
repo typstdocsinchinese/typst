@@ -45,15 +45,19 @@ function]($outline) is the right place to learn more.
 - 表格的列数
 - 每一格的内容
 
+<original>
 In order to create a table in Typst, use the [`table` function]($table). For a
 basic table, you need to tell the table function two things:
 - The number of columns
 - The content for each of the table cells
+</original>
 
 假设现在你要创建一个两栏的表，用来描述饼干食谱所用到的材料：
 
+<original>
 So, let's say you want to create a table with two columns describing the
 ingredients for a cookie recipe:
+</original>
 
 ```example
 #table(
@@ -73,15 +77,18 @@ ingredients for a cookie recipe:
 
 这个例子展示了调用表格、配置表格以及填入表格参数的方法。传入 table 函数的参数包括表格的列数以及每一格的内容。[参数列表]($function)由圆括号包围，其中我们首先以具名参数的形式传入了列数，然后以有序参数的形式传入了多个[内容块]($content)。每个内容块包含了表格中一格的内容。
 
+<original>
 This example shows how to call, configure, and populate a table. Both the column
 count and cell contents are passed to the table as arguments. The [argument
 list]($function) is surrounded by round parentheses. In it, we first pass the
 column count as a named argument. Then, we pass multiple [content
 blocks]($content) as positional arguments. Each content block contains the
 contents for a single cell.
+</original>
 
 为了让代码更易读，我们每行只放两个内容块，如同它们会在表格中展示的那样。或者你让每一格的内容都独占一行，这些对于 Typst 来说都没有区别。Typst 总是将格中的内容按照从左到右（或者从右到左，这取决于当前语言中文字的书写方向）、从上到下的顺序排列，并且会自动为表格添加行。
 
+<original>
 To make the example more legible, we have placed two content block arguments on
 each line, mimicking how they would appear in the table. You could also write
 each cell on its own line. Typst does not care on which line you place the
@@ -89,13 +96,16 @@ arguments. Instead, Typst will place the content cells from left to right (or
 right to left, if that is the writing direction of your language) and then from
 top to bottom. It will automatically add enough rows to your table so that it
 fits all of your content.
+</original>
 
 对于表头，最好将其用 [`table.header`]($table.header) 函数包围，这样能够让你的内容更加清晰，并且如果 Typst 在将来对相关的用户体验进行优化的话，它们也可以直接作用到此处的表头上。
 
+<original>
 It is best to wrap the header row of your table in the [`table.header`
 function]($table.header). This clarifies your intent and will also allow future
 versions of Typst to make the output more accessible to users with a screen
 reader:
+</original>
 
 ```example
 #table(
@@ -116,9 +126,11 @@ reader:
 
 你还可以编写一个 show rule 来自动地[着重强调]($strong)（即粗体）所有表格中的第一格内容。在你的文档中包含多个表格非常有用。
 
+<original>
 You could also write a show rule that automatically [strongly
 emphasizes]($strong) the contents of the first cells for all tables. This
 quickly becomes useful if your document contains multiple tables!
+</original>
 
 ```example
 #show table.cell.where(y: 0): strong
@@ -141,31 +153,38 @@ quickly becomes useful if your document contains multiple tables!
 
 在这里，我们在 show rule 中用到了一个针对表中坐标的选择器，而非直接将样式应用到 `table.header` 上。需要这样做其实是当前 Typst 的一个限制所导致的，将会在未来的更新中修复掉。
 
+<original>
 We are using a show rule with a selector for cell coordinates here instead of
 applying our styles directly to `table.header`. This is due to a current
 limitation of Typst that will be fixed in a future release.
+</original>
 
-恭喜你，你已经创建了你的第一张表！现在你可以继续[修改列宽](#如何修改列宽)、[调整边框](#如何调整边框)、[修改线条](#如何调整表格中的各种线条)以及更多操作。
+恭喜你，你已经创建了你的第一张表！现在你可以继续[修改列宽](#如何修改列宽)、[调整边框](#如何调整边框)、[添加条纹效果](#如何得到一个带条纹的表格)以及更多操作。
 
+<original>
 Congratulations, you have created your first table! Now you can proceed to
 [change column sizes](#column-sizes), [adjust the strokes](#strokes), [add
 striped rows](#fills), and more!
+</original>
 
 ## 如何修改列宽
 
 在指定了列数以后，Typst 会让每一列尽可能大，从而能够容纳其中占空间最大的一格。通常你还可能需要一些不一样的效果，比如让你的表格占据页面的全部宽度。这时你可以向 `columns` 参数传入一个列表，在内部指定新的列宽。下面是几种指定列宽的写法：
 
+<original>
 If you create a table and specify the number of columns, Typst will make each
 column large enough to fit its largest cell. Often, you want something
 different, for example, to make a table span the whole width of the page. You
 can provide a list, specifying how wide you want each column to be, through the
 `columns` argument. There are a few different ways to specify column widths:
+</original>
 
 - 第一种是 `{auto}`，也就是默认的行为，它使列的宽度符合其中最大格的大小。如果空间不足，Typst 会尽可能地在所有 `{auto}` 大小的列之间分配合理的空间。
 - 定长 [length]，可以填入 `{6cm}`、`{0.7in}` 或者 `{120pt}` 等。通常你会用到的是相对于字体大小的 `em` 单位，它相当于是当前字体大小的倍数。指定长度可以固定列的大小，而忽略其中字体的大小。
 - 百分比 [ratio]，比如 `{40%}`，会让列占据指定比例宽度的表格水平空间，该空间可能是页面的总宽度也可能是表本身自带的宽度。你还可以将百分比与定长混合起来形成[相对长度]($relative)。注意，如果你用百分比去规定每一列的宽度，并让这些宽度加起来等于 100%，并不能保证表格仍然处于其容器内部，这是因为栏与栏之间存在着间隙（[gutter]($table.gutter)，它们并没有被包含在列宽里。如果你只是单纯的想让表占据总宽，下一条中的内容会很有用。
 - 空闲空间的分度 [fraction]，使用 `fr` 单位指定，例如 `1fr`。它按照如下方式生效：首先，Typst 将所有没有用到 `fr` 指定的列宽加起来，然后判断有多少空闲空间剩余，接下来将这些空闲空间分配给用 `fr` 指定的列宽上。在此过程中，`2fr` 的列的宽度总是 `1fr` 列的宽度的两倍。以上便是这种写法名称的由来：使用这种方法的列宽，是所有使用同种方法的列的总宽度的相应分度值。
 
+<original>
 - First, there is `{auto}`. This is the default behavior and tells Typst to grow
   the column to fit its contents. If there is not enough space, Typst will try
   its best to distribute the space among the `{auto}`-sized columns.
@@ -190,12 +209,15 @@ can provide a list, specifying how wide you want each column to be, through the
   During this process, a `2fr` column will become twice as wide as a `1fr`
   column. This is where the name comes from: The width of the column is its
   fraction of the total fractionally sized columns.
+</original>
 
 让我们将这些用在一个包含日期、数字以及一些日常任务的介绍的表格中。前两列的宽度为 `auto`，最后一列的宽度被指定为 `1fr`，这样它就可以占据剩余的全部空间。
 
+<original>
 Let's put this to use with a table that contains the dates, numbers, and
 descriptions of some routine checks. The first two columns are `auto`-sized and
 the last column is `1fr` wide as to fill the whole page.
+</original>
 
 ```example
 #table(
@@ -209,6 +231,7 @@ the last column is `1fr` wide as to fill the whole page.
 
 这里，我们以[数组]($array)的形式传入了列宽表，各项宽度用圆括号包围，逗号分隔。前两列的宽度是自动的，因此它们只占据内容所需要占据的大小。第三列的宽度为 `{1fr}`，所以它会充满剩余的所有宽度。如果你想让第二列更大一点，可以修改列宽表，将其宽度指定为 `{6em}` 之类的值。
 
+<original>
 Here, we have passed our list of column lengths as an [array], enclosed in round
 parentheses, with its elements separated by commas. The first two columns are
 automatically sized, so that they take on the size of their content and the
@@ -216,26 +239,33 @@ third column is sized as `{1fr}` so that it fills up the remainder of the space
 on the page. If you wanted to instead change the second column to be a bit more
 spacious, you could replace its entry in the `columns` array with a value like
 `{6em}`.
+</original>
 
 ## 如何添加表格注解及引用表格
 
 表格的最大价值便是其反映给读者的内容信息。通过交叉引用，你在叙述与表格之间建立起清晰的联系，从而使它们的效果更好。Typst 为你提供了自动的[参考]($ref)以及 [figure] 函数。
 
+<original>
 A table is just as valuable as the information your readers draw from it. You
 can enhance the effectiveness of both your prose and your table by making a
 clear connection between the two with a cross-reference. Typst can help you with
 automatic [references]($ref) and the [`figure` function]($figure).
+</original>
 
 和图片一样，将一个表格用 `figure` 函数来包围，就可以为其添加注解以及标签，加了标签以后就可以在任何地方引用了。除此之外，你还可以用 figure 的 `placement` 参数将其浮动定位到页面的顶部或者底部。
 
+<original>
 Just like with images, wrapping a table in the `figure` function allows you to
 add a caption and a label, so you can reference the figure elsewhere. Wrapping
 your table in a figure also lets you use the figure's `placement` parameter to
 float it to the top or bottom of a page.
+</original>
 
 现在我们来观察一个带注解的表格，以及如何在陈述中引用它。
 
+<original>
 Let's take a look at a captioned table and how to reference it in prose:
+</original>
 
 ```example
 >>> #set page(width: 14cm)
@@ -259,22 +289,27 @@ We will show how its performance can be improved in this section.
 
 上面的例子展示了如何将表格包围在 figure 内来添加注解和标签，以及如何引用这一标签。代码中，我们以 `figure` 函数起手，它以有序参数的形式接受 figure 的内容。我们直接将 table 函数放在了它的参数列表中。然后以具名参数（在上方或者下方）传入了注解的内容，从而为表格加了注解。我们没有在 table 前带上 `#` 符号，它只有在 markup mode 中调用函数时才需要。
 
+<original>
 The example shows how to wrap a table in a figure, set a caption and a label,
 and how to reference that label. We start by using the `figure` function. It
 expects the contents of the figure as a positional argument. We just put the
 table function call in its argument list, omitting the `#` character because it
 is only needed when calling a function in markup mode. We also add the caption
 as a named argument (above or below) the table.
+</original>
 
 在 figure 调用之后，我们将标签内容放在了一对尖括号中（`[<probe-a>]`），这使得 Typst 能够记住该元素，并可以在整个文档中用此名称来引用它。在我们的正文叙述中，可以用 @ 符号加上标签名来引用 `[@probe-a]`。Typst 会输出一个精心格式化的引用，并且会在表格数量变动时自动更新标签。
 
+<original>
 After the figure call, we put a label in angle brackets (`[<probe-a>]`). This
 tells Typst to remember this element and make it referenceable under this name
 throughout your document. We can then reference it in prose by using the at sign
 and the label name `[@probe-a]`. Typst will print a nicely formatted reference
 and automatically update the label if the table's number changes.
+</probe-a>
 
-## How to get a striped table? { #fills }
+## 如何得到一个带条纹的表格
+
 Many tables use striped rows or columns instead of strokes to differentiate
 between rows and columns. This effect is often called _zebra stripes._ Tables
 with zebra stripes are popular in Business and commercial Data Analytics
