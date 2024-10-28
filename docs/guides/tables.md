@@ -145,7 +145,7 @@ We are using a show rule with a selector for cell coordinates here instead of
 applying our styles directly to `table.header`. This is due to a current
 limitation of Typst that will be fixed in a future release.
 
-恭喜你，你已经创建了你的第一张表！现在你可以继续[修改列宽](#如何修改列宽)、[调整边框](#如何调整边框)、[添加条纹化的列]以及更多操作。
+恭喜你，你已经创建了你的第一张表！现在你可以继续[修改列宽](#如何修改列宽)、[调整边框](#如何调整边框)、[修改线条](#如何调整表格中的各种线条)以及更多操作。
 
 Congratulations, you have created your first table! Now you can proceed to
 [change column sizes](#column-sizes), [adjust the strokes](#strokes), [add
@@ -527,7 +527,8 @@ future release. You can check how colors look for color-blind readers with
 [Photoshop](https://helpx.adobe.com/photoshop/using/proofing-colors.html), or
 [GIMP](https://docs.gimp.org/2.10/en/gimp-display-filter-dialog.html).
 
-## How to adjust the lines in a table? { #strokes }
+## 如何调整表格中的各种线条
+
 By default, Typst adds strokes between each row and column of a table. You can
 adjust these strokes in a variety of ways. Which one is the most practical,
 depends on the modification you want to make and your intent:
